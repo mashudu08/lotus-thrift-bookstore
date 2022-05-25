@@ -25,6 +25,7 @@ Accessed: 25 May 2022
     ?>
      <!-- contact form styling using Bootstrap -->
 <section class="contact">
+    <div class="row mb-3">
     <form class="form" action="" method="post">
         <h1 class="header-title">Contact</h1>
         <h3>Send us a message on book enquiries</h3>
@@ -36,6 +37,7 @@ Accessed: 25 May 2022
         <textarea class="text-input" name="Message" placeholder="Message" cols="30" rows="10" required></textarea><br><br>
         <input type="submit" class="btn-button" name="Send" value="Send" />
     </form>
+    </div>
 </section>
 <?php include 'footer.php'; ?>
 </body>
