@@ -8,9 +8,75 @@
 
 *{
     font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
 }
 
 a{
     text-decoration: none;
     color: var(--main-color);
 }
+/* NAVIGATION BAR*/
+
+.header .header-1{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    /* margin: 0 auto; */
+    padding: 0 10px;
+    position: relative;
+}
+
+.header-1 .links{
+    padding: 0 15px;
+}
+.header .header-1 a:hover{
+    text-decoration: underline;
+}
+
+.header .header-1 .navbar a{
+    margin: 0 2rem;
+    /* font-size: 18px; */
+}
+.header .header-1 .icons *{
+    font-size: 1rem;
+    padding: 0 5px;
+    cursor: pointer;
+}
+
+.btn-button{
+    background-color: var(--btn-bg-color);
+    color: var(--secondary-color);
+    width: 100px;
+    height: 30px;
+}
+
+/* CONTACT PAGE */
+/* .contact{
+
+} */
+
+
+
+
+
+
+
+
+
+/* FOOTER */
+.footer{
+    background-color: var(--footer-bg-color);
+    text-align: center;
+    color: var(--secondary-color);
+    width: 100%;
+    height: 170px;
+    position: fixed;
+    margin-top: 100px;
+}
+ .footer a {
+     color: var(--secondary-color);
+     padding: 10px 10px;
+     margin-top: 50px;
+ }
+
