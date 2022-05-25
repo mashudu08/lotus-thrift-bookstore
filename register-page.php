@@ -1,8 +1,12 @@
+<!-- ST10115884 Mashudu Luvhengo 
+The code is my own work unless stated otherwise as a comment at the point 
+of usage -->
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style><?php include "css/style.css"; ?> </style>
     <title>Register</title>
 </head>
 <body>
@@ -11,6 +15,7 @@
     // redirect to login page
 
     ?>
+
 
     <form class="form" action="" method="post">
         <h1 class="login-title">Register</h1>
