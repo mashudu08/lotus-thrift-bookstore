@@ -10,24 +10,85 @@ of usage -->
     <title>Register</title>
 </head>
 <body>
-    <?php
-    //  when form is submitted, insert values into database 
-    // redirect to login page
+<?php
+    include("db-connect.php");
+  
+    $errorCount = 0;
+    $name_error = $stNum_error = $username_error = $password_error = " ";
+    $name = $stNum = $username = $password = " ";
 
+    if(isset($_POST["Register"])){
+        if(empty($_POST['Name'])){
+            $name_error = "Please enter your name.";
+            $errorCount++;
+          }else{
+            $name = $_POST['Name'];
+          }
+        
+          if(empty($_POST['stNumber'])){
+            $stNum_error = "Please enter a student number";
+            $errorCount++;
+          }else{
+            $stNum = $_POST['stNumber'];
+          }
+
+          if(empty($_POST['Username'])){
+            $username_error = "Please enter t a username.";
+            $errorCount++;
+
+            $username = $_POST['Username'];
+          }
+
+          if(empty($_POST['Password'])){
+            $password_error = "Please enter a password.";
+            $errorCount++;
+          }else{
+            $password = $_POST['Password'];
+          }
+   echo $errorCount;
+      if($errorCount == 0){
+      //Inseer users details to User table
+      $sql = "INSERT INTO `user` ( name, stNumber, username, password)
+              VALUES ('$name', '$stNum', '$username', '$password')";
+      
+  
+        //executing the query
+        $dbResult = mysqli_query($dbconnect, $sql);
+      echo $dbResult;
+
+        if ($dbResult === FALSE) {
+          echo "Error inserting into the database: ". mysqli_connect_error();
+        } else { 
+         // session_start();
+          $_SESSION['message'] = "User created successfully.";
+          $_SESSION['msg_type'] = "success";
+          header('location:login-page.php');
+        }
+  
+        $name = $stNum = $username = $password = "";
+  
+          //closing the connection
+          mysqli_close($dbconnect);
+         $dbconnect = FALSE;
+      }
+      unset($_POST["Register"]);
+        
+    }
     ?>
 
-
-    <form class="form" action="" method="post">
+    <form class="form" action="register-page.php" method="POST">
         <h1 class="login-title">Register</h1>
         <label>Name</label>
-        <input type="text" class="login-input" name="Name" placeholder="Name" required/><br><br>
+        <input type="text" class="login-input" name="Name" value="" required/><span><?=$name; ?></span><br><br>
         <label>ST Number</label>
-        <input type="text" class="login-input" name="ST Number" placeholder="ST Number" required/><br><br>
+        <input type="text" class="login-input" name="stNumber" value=""  required/><span><?=$stNum; ?></span><br><br>
         <label>Username</label>
-        <input type="text" class="login-input" name="Username" placeholder="Username" required/><br><br>
+        <input type="text" class="login-input" name="Username" value="" required/><span><?=$username; ?></span><br><br>
         <label>Password</label>
-        <input type="password" class="login-input" name="Password" placeholder="Password" required/><br><br>
+        <input type="password" class="login-input" name="Password" value="" /><span><?=$password; ?></span><br><br>
         <input type="submit" class="login-button" name="Register" value="Register" />
     </form>
+    
+    
 </body>
 </html>

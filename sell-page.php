@@ -37,10 +37,13 @@ Accessed: 25 May 2022
         <label>Price</label>
         <input type="email" class="text-input" name="Price" placeholder="Price" required/><br><br>
 
-        <label>Upload image</label> &nbsp;<div id="upload" class="fa-solid fa-upload"></div> <br><br>
-
+        <div class="mb-3">
+         <label for="formFileSm" class="form-label">Upload image</label> &nbsp; 
+         <input class="form-control form-control-sm" id="formFileSm" type="file">
+        </div>
+        <!-- <div id="upload" class="fa-solid fa-upload"></div> -->   <br>
         <label>Description</label> <br><br>
-        <textarea class="text-input" name="Description" placeholder="Book description" cols="30" rows="10" required></textarea><br><br>
+        <textarea class="text-input" name="Description" placeholder="Book description" cols="70" rows="10" required></textarea><br><br>
         <input type="submit" class="btn-button" name="Upload" value="Upload" />
     </form>
 </section>
