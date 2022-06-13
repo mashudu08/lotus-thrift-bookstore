@@ -7,6 +7,33 @@ References
 Bootstrap. 2022. Forms. [online]. Available on: https://getbootstrap.com/docs/5.2/forms/overview/ .
 Accessed: 25 May 2022
 -->
+
+<?php
+     include 'db-connect.php';
+
+     session_start();
+
+     $user_id = $_SESSION['userId'];
+
+     if(!isset($user_id)){
+         header('location:login-page.php');
+     }
+
+    if(isset($_POST['submit'])){
+        $name = mysqli_real_escape_string($dbconnect, $_POST['name']);
+        $email = mysqli_real_escape_string($dbconnect, $_POST['email']);
+        $msg = mysqli_real_escape_string($dbconnect, $_POST['message']);
+    
+    $select_message = mysqli_query($dbconnect, "SELECT * FROM `connect` WHERE name = '$name' AND email = '$email' AND message = '$msg'");
+
+    if(mysqli_num_rows($select_message) > 0){
+        $message[] = 'message sent already!';
+     }else{
+        mysqli_query($conn, "INSERT INTO `message`(userId, name, email, message) VALUES('$user_id', '$name', '$email', '$msg')") or die('query failed');
+        $message[] = 'message sent successfully!';
+     }
+}
+    ?>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -20,9 +47,7 @@ Accessed: 25 May 2022
 </head>
 <body>
     <?php include 'header.php'; ?>
-    <?php
-     //database connections
-    ?>
+
      <!-- contact form styling using Bootstrap -->
 <section class="contact">
     <div class="row mb-3">

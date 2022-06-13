@@ -1,15 +1,6 @@
 <!-- ST10115884 Mashudu Luvhengo 
 The code is my own work unless stated otherwise as a comment at the point 
 of usage -->
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <style><?php include "css/style.css"; ?> </style>
-    <title>Register</title>
-</head>
-<body>
 <?php
     include("db-connect.php");
   
@@ -33,17 +24,17 @@ of usage -->
           }
 
           if(empty($_POST['Username'])){
-            $username_error = "Please enter t a username.";
+            $username_error = "Please enter a username.";
             $errorCount++;
-
+          }else{
             $username = $_POST['Username'];
           }
 
           if(empty($_POST['Password'])){
             $password_error = "Please enter a password.";
             $errorCount++;
-          }else{
-            $password = $_POST['Password'];
+          }else{  
+            $password = PASSWORD_BCRYPT($_POST['Password']);
           }
    echo $errorCount;
       if($errorCount == 0){
@@ -76,6 +67,15 @@ of usage -->
     }
     ?>
 
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style><?php include "css/style.css"; ?> </style>
+    <title>Register</title>
+</head>
+<body>
     <form class="form" action="register-page.php" method="POST">
         <h1 class="login-title">Register</h1>
         <label>Name</label>
@@ -85,7 +85,11 @@ of usage -->
         <label>Username</label>
         <input type="text" class="login-input" name="Username" value="" required/><span><?=$username; ?></span><br><br>
         <label>Password</label>
-        <input type="password" class="login-input" name="Password" value="" /><span><?=$password; ?></span><br><br>
+        <input type="password" class="login-input" name="Password" value="" required/><span><?=$password; ?></span><br><br>
+        <!-- <select name="user_type" class="box">
+         <option value="user">user</option>
+         <option value="admin">admin</option>
+      </select> <br><br> -->
         <input type="submit" class="login-button" name="Register" value="Register" />
     </form>
     
