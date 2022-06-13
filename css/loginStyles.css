@@ -1,0 +1,113 @@
+body
+{
+    background-image: url("img/background.jpg");
+    background-position: center;
+    background-size: cover;
+    font-family: 'Courier New', Courier, monospace;
+    margin-top: 30px;
+}
+
+.main
+{
+    background-color: #1B263B;
+    width: 400px;
+    height: 600px;
+    margin: auto;
+    margin-top: 20px;
+}
+
+.form
+{
+    padding: 5px;
+}
+
+.login-title
+{
+    width: 400px;
+    margin: auto;
+    color: #FFFFFF;
+    padding: 5px 0px 5px 0px;
+    text-align: center;
+    margin-bottom: 150px;
+}
+
+label
+{
+    padding: 25px 5px 25px 5px;
+    font-size: 16px;
+    color: #FFFFFF;
+    margin-left: 60px;
+}
+
+.login-input
+{
+    padding: 5px 0px 5px 0px;
+    font-size: 14px;
+    color: #FFFFFF;
+    width: 180px;
+    margin: 5px 0;
+    border-left: 0;
+    border-top: 0;
+    border-right: 0;
+    border-bottom: 1px solid #FFFFFF;
+    outline: none;
+    background: transparent;
+}
+
+.login-input2
+{
+    padding: 5px 0px 5px 0px;
+    font-size: 14px;
+    margin-left: 7px;
+    color: #FFFFFF;
+    width: 180px;
+    border-left: 0;
+    border-top: 0;
+    border-right: 0;
+    border-bottom: 1px solid #FFFFFF;
+    outline: none;
+    background: transparent;
+}
+
+.link
+{
+    padding: 5px 0px 5px 0px;
+    font-size: 15px;
+    color: #FFFFFF;
+    margin-left: 65px;
+}
+
+.link2
+{
+    padding: 5px 0px 5px 0px;
+    font-size: 12px;
+    color: #FFFFFF;
+}
+
+.link2:hover
+{
+    color: #1b942f;
+}
+
+.login-button
+{
+    background-color: #1b942f;
+    display: block;
+    margin: 15px 0px 0px 15px;
+    text-align: center;
+    border-radius: 13px;
+    border: 1px solid #FFFFFF;
+    padding: 15px 100px;
+    outline: none;
+    color: #FFFFFF;
+    cursor: pointer;
+    transition: 0.20px;
+    font-size: 16px;
+    margin-top: 35px;
+    margin-left: 75px;
+}
+
+.login-button:hover
+{
+    background-color: #0877aa;
+}

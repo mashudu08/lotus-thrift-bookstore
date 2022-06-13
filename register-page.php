@@ -1,4 +1,5 @@
 <!-- ST10115884 Mashudu Luvhengo 
+     ST10118368 Ledwaba David
 The code is my own work unless stated otherwise as a comment at the point 
 of usage -->
 <?php
@@ -36,7 +37,7 @@ of usage -->
           }else{  
             $password = PASSWORD_BCRYPT($_POST['Password']);
           }
-   echo $errorCount;
+    echo $errorCount;
       if($errorCount == 0){
       //Inseer users details to User table
       $sql = "INSERT INTO `user` ( name, stNumber, username, password)
@@ -44,55 +45,44 @@ of usage -->
       
   
         //executing the query
-        $dbResult = mysqli_query($dbconnect, $sql);
-      echo $dbResult;
+        $dbResult = @mysqli_query($dbconnect, $sql);
+        echo $dbResult;
 
         if ($dbResult === FALSE) {
           echo "Error inserting into the database: ". mysqli_connect_error();
         } else { 
          // session_start();
-          $_SESSION['message'] = "User created successfully.";
+          $_SESSION['message'] = "User created successfully. Please wait for registration approval.";
           $_SESSION['msg_type'] = "success";
           header('location:login-page.php');
         }
   
         $name = $stNum = $username = $password = "";
   
-          //closing the connection
-          mysqli_close($dbconnect);
-         $dbconnect = FALSE;
+        //closing the connection
+        @mysqli_close($dbconnect);
+        $dbconnect = FALSE;
       }
       unset($_POST["Register"]);
         
     }
     ?>
 
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <style><?php include "css/style.css"; ?> </style>
-    <title>Register</title>
-</head>
-<body>
-    <form class="form" action="register-page.php" method="POST">
-        <h1 class="login-title">Register</h1>
-        <label>Name</label>
-        <input type="text" class="login-input" name="Name" value="" required/><span><?=$name; ?></span><br><br>
-        <label>ST Number</label>
-        <input type="text" class="login-input" name="stNumber" value=""  required/><span><?=$stNum; ?></span><br><br>
-        <label>Username</label>
-        <input type="text" class="login-input" name="Username" value="" required/><span><?=$username; ?></span><br><br>
-        <label>Password</label>
-        <input type="password" class="login-input" name="Password" value="" required/><span><?=$password; ?></span><br><br>
-        <!-- <select name="user_type" class="box">
-         <option value="user">user</option>
-         <option value="admin">admin</option>
-      </select> <br><br> -->
-        <input type="submit" class="login-button" name="Register" value="Register" />
-    </form>
-    
+    <style><?php include "css/registerStyles.css";?></style>
+    <h1 class="login-title">Registration Form</h1>
+    <div class="formMain">
+      <form class="form" action="register-page.php" method="POST">
+          <label class="label">Name</label><br>
+          <input type="text" class="login-input" name="Name" value="" required/><span><?=$name; ?></span><br><br>
+          <label class="label">Student Number</label><br>
+          <input type="text" class="login-input" name="stNumber" value=""  required/><span><?=$stNum; ?></span><br><br>
+          <label class="label">Username</label><br>
+          <input type="text" class="login-input" name="Username" value="" required/><span><?=$username; ?></span><br><br>
+          <label class="label">Password</label><br>
+          <input type="password" class="login-input" name="Password" value="" /><span><?=$password; ?></span><br><br>
+          <input type="submit" class="login-button" name="Register" value="Register" />
+      </form>
+    </div>
     
 </body>
 </html>

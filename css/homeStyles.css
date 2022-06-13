@@ -1,0 +1,82 @@
+
+
+.container
+{
+    background-color: #243452;
+    color: white;
+    text-align: center;
+    position: relative;
+    border-radius: 0px 0px 0px 0px;
+    margin-left: 75px;
+    margin-right: 75px;
+}
+
+.divider
+{
+    margin-top: 40px;
+    position: relative;
+    align-content: center;
+    background-color: #30405e;
+    color: white;
+    text-align: center;
+    
+}
+
+.contain_button
+{
+    margin-top: 5px;
+    margin-bottom: 5px;
+    width: 150px;
+    display: inline-block;
+    text-decoration: none;
+    size: 25px;
+    color: #FFFFFF;
+    border: 1px solid #FFFFFF;
+    padding: 10px 10px 10px 10px;
+    font-size: 20px;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+.latest
+{
+    margin: auto;
+    text-align: center;
+}
+
+.books
+{
+    position: relative;
+    align-content: center;
+    text-align: center;
+    margin-left: 25px;
+    margin-right: 35px;
+    margin-top: 25px;
+    margin-bottom: 5px;
+}
+
+.add_button
+{
+    background-color: #1B263B;
+    display: block;
+    text-align: center;
+    border: 1px solid;
+    outline: none;
+    margin-top: 5px;
+    margin-left: 90px;
+    margin-bottom: 5px;
+    width: 150px;
+    text-decoration: none;
+    size: 18px;
+    color: #FFFFFF;
+    padding: 10px 10px 10px 10px;
+    font-size: 12px;
+    cursor: pointer;
+    transition: 0.20px;
+}
+
+.add_button:hover
+{
+    background-color: #1b942f;
+}
+
