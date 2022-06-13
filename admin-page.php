@@ -72,8 +72,8 @@ of usage -->
       <h3 style="text-align: center;">Books</h3> 
          <p>Add new book</p>
          <?php
-              include 'db-connect.php';
-                session_start();
+              // include 'db-connect.php';
+                // session_start();
 
               //  $admin_id = $_SESSION['adminId'];
 
@@ -86,28 +86,25 @@ of usage -->
                   $author = mysqli_real_escape_string($dbconnect, $_POST['author']);
                   $title = mysqli_real_escape_string($dbconnect, $_POST['title']);
                   $price = mysqli_real_escape_string($dbconnect,$_POST['price']);
-                  $fileName = basename($_FILES['image']['name']);
-                  $fileType = pathinfo($fileName, PATHINFO_EXTENSION);
-                  $image_tmp_name = $_FILES['image']['tmp_name'];
-                  $imgContent = addslashes(file_get_contents($image_tmp_name));
+                  $filename = $_FILES['image']['name'];
+                  $tmp_name = $_FILES['image']['tmp_name'];
+                  $folder = "./img/" . $filename;
                   $description = mysqli_real_escape_string($dbconnect, $_POST['description']);
 
               //  $select_product_name = mysqli_query($dbconnect, "INSERT INTO books");
-
-              if(mysqli_num_rows($insert_book) > 0){
-                  $message[] = 'product name already added';
-              }else{
-                  $insert_book = mysqli_query($dbconnect, "INSERT INTO `books`(author,title, price, image, description) VALUES('$author','$title', '$price', '$imgContent', '$description')") or die('query failed');
-
-                  if($insert_book){
-                        // move_uploaded_file($image_tmp_name);
-                        $message[] = 'File uploaded successfully!';
-                    
-                  }else{
-                    $message[] = 'File upload failed, please try again.';
-                  }
-              }
+              $insert_book = mysqli_query($dbconnect, "INSERT INTO `books`(author,title, price, image, description) 
+              VALUES('$author','$title', '$price', '$filename', '$description')") or die('query failed');
+              
+              if (move_uploaded_file($tmp_name, $folder)) {
+                echo "<h3>  Image uploaded successfully!</h3>";
+            } else {
+                echo "<h3>  Failed to upload image!</h3>";
+            }
+            //closing the connection
+        mysqli_close($dbconnect);
+        $dbconnect = FALSE;
              }
+             unset($_POST['add-book']);
           ?> 
 
   <form action="" method="post" enctype="multipart/form-data" style="padding: 10px;">
@@ -135,6 +132,8 @@ of usage -->
       <th scope="col">Title</th>
       <th scope="col">Price</th>
       <th scope="col">Image</th>
+      <th scope="col">Edit</th>
+      
     </tr>
   </thead>
   <tbody>
@@ -149,6 +148,8 @@ of usage -->
          <td> <?php echo $fetch_users['author']; ?></td>
          <td> <?php echo $fetch_users['title']; ?></td>
          <td> <?php echo $fetch_users['price']; ?></td>
+         <td> <img src=img/ <?php echo $fetch_users ['filename']; ?> > </td>
+         <td> <button type="submit" name="delete" class="btn btn-danger">Delete</button></td>
          </tr>
        <?php
          };

@@ -49,6 +49,7 @@ Accessed: 25 May 2022
     <?php include 'header.php'; ?>
 
      <!-- contact form styling using Bootstrap -->
+     <div class="main">
 <section class="contact">
     <div class="row mb-3">
     <form class="form" action="" method="post">
@@ -64,6 +65,7 @@ Accessed: 25 May 2022
     </form>
     </div>
 </section>
+</div>
 <?php include 'footer.php'; ?>
 </body>
 </html>
