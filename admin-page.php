@@ -73,7 +73,7 @@ of usage -->
          <p>Add new book</p>
          <?php
               include 'db-connect.php';
-                // session_start();
+                session_start();
 
               //  $admin_id = $_SESSION['adminId'];
 
@@ -110,7 +110,7 @@ of usage -->
              }
           ?> 
 
- <form action="" method="post" enctype="multipart/form-data" style="padding: 10px;">
+  <form action="" method="post" enctype="multipart/form-data" style="padding: 10px;">
  <!-- <div class="row mb-2"> -->
       <label>Author</label> 
       <input type="text" name="author" class="box" required><br><br>
