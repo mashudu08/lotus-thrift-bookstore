@@ -2,6 +2,9 @@
      ST10118368 Ledwaba David
 The code is my own work unless stated otherwise as a comment at the point 
 of usage -->
+<?php
+      include 'db-connect.php';       //db connection 
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -18,9 +21,9 @@ of usage -->
     <section class="cart">
         <h1 class="title">Your Cart</h1>
         <div class="box-container">
-        <?php
-             //db connection 
-         ?>
+      
+          
+      </div>
         </div>
     </section>
     <?php include 'footer.php'; ?>

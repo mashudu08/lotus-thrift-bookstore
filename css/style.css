@@ -10,6 +10,7 @@
     font-family: 'Poppins', sans-serif;
     margin: 0;
     padding: 0;
+    font-weight: 600;
 }
 
 a{
@@ -61,11 +62,26 @@ a{
     display: inline-block;
 }
 
+/* ADMIN LOGIN BUTTON*/
+.admin-login-btn a{
+    text-decoration: none;
+    display: inline-block;
+    color: var(--btn-bg-color);
+    border: 2px solid var(--btn-bg-color);
+    padding: 5px 15px;
+    border-radius: 30px;
+    margin: 10px;
+    float: right;
+}
 
-
-
-
-
+/* BUTTON*/
+.btn-button{
+    color: var(--secondary-color);
+    border: #1B263B;
+    border-radius: 30px;
+    width: 120px;
+    height: 30px;
+}
 
 /* FOOTER */
 .footer{
