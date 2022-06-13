@@ -1,0 +1,42 @@
+
+
+.pic
+{
+    margin-top: 12px;
+    margin-left: 50px;
+    width: 300px;
+    height: 400px;
+}
+
+.details
+{
+    font-size: 15px;
+    margin-left: 50px;
+    position: relative;
+}
+    .author
+    {
+        font-size: 20px;
+    }
+
+.add_button
+{
+    background-color: #1B263B;
+    display: block;
+    margin: 15px 0px 0px 15px;
+    text-align: center;
+    border: 1px solid #FFFFFF;
+    padding: 15px 100px;
+    outline: none;
+    color: #FFFFFF;
+    cursor: pointer;
+    transition: 0.20px;
+    font-size: 12px;
+    margin-bottom: 12px;
+    position: relative;
+}
+
+.add_button:hover
+{
+    background-color: #1b942f;
+}
