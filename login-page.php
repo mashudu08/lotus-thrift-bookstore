@@ -3,43 +3,39 @@
 The code is my own work unless stated otherwise as a comment at the point 
 of usage -->
 <?php
-    //  when form is submitted, check if user already exists in the database 
-    //create a user session 
-    //redirect users to home page
     include 'db-connect.php';
     session_start();
-    if(isset($POST['Login'])){
+    if(isset($_POST['Login'])){
+
         $username = mysqli_real_escape_string($dbconnect, $_POST['username']);
-        $pass = mysqli_real_escape_string($dbconnect, md5($_POST['password']));
+        $pass = mysqli_real_escape_string($dbconnect, $_POST['password']);
          
-        $select_user = mysqli_query($dbconnect, "SELECT * FROM `user` WHERE username = '$username' AND password = '$pass'");
+        $select_user = mysqli_query($dbconnect, "SELECT * FROM `user` WHERE username = '$username' ");
+        
+            if(mysqli_num_rows($select_user) > 0){
+                $row = mysqli_fetch_assoc($select_user);
+           
+                    $_SESSION['username'] = $row['username'];
+                    // checking if user is verfied
+                    if (password_verify($pass ,$row['password'])) {
+                        $_SESSION['password'] = $row['password'];
+                        $isVerified =  $row['isVerified'];
+                        if ($isVerified == 1) {
+                            echo '<script>alert("Welcome back")</script>';
+                        //    sleep(3);
+                        //     echo '<script>';
+                        //     echo 'alert("Welcome". $username)';
+                        //    echo '</script>';
+                            header('location:home-page.php');
+                        } else {
+                            echo 'Waiting to be verified';
+                        }
+                    }                        
+                  }else{
 
-        if(mysqli_num_rows($select_users) > 0){
-            $row = mysqli_fetch_assoc($select_users);
-             $_SESSION['username'] = $row['username'];
-             $_SESSION['password'] = $row['password'];
-             $_SESSION['userId'] = $row['id'];
-             header('location:home-page.php');
-            // if($row['user_type'] == 'admin'){
-
-            //     $_SESSION['admin_username'] = $row['username'];
-            //     $_SESSION['admin_password'] = $row['password'];
-            //     $_SESSION['adminId'] = $row['id'];
-            //     header('location:admin-page.php');
-       
-            //  }elseif($row[$username] == 'user'){
-       
-            //     $_SESSION['username'] = $row['username'];
-            //     $_SESSION['password'] = $row['password'];
-            //     $_SESSION['userId'] = $row['id'];
-            //     header('location:home-page.php');
-       
-            //  }
-       
-          }else{
-             $message[] = 'incorrect email or password!';
-          }
-       
+                    echo 'Waiting to be verified';
+                  }       
+                
         }
     
     ?>
@@ -49,42 +45,24 @@ of usage -->
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <style><?php include "css/style.css"; ?> </style>
+    <style><?php include "css/loginStyles.css"; ?> 
+     </style>
     <title>Login</title>
 </head>
-<body>
-<<<<<<< HEAD
-    <div class="admin-login-btn">
+<body style=" background-image: url('img/books.jpeg');  background-position: center; background-size: cover;">
+<div class="admin-login-btn" style="margin-left: 1100px;">
     <a href="admin-login.php">Admin Login</a>
     </div>
-
-    <form class="form" action="" method="post">
+    <div class="main">
+    <form class="form" action="login-page.php" method="post">
         <h1 class="login-title">Login</h1>
         <label>Username</label>
-        <input type="text" class="login-input" name="Username" placeholder="Username" required/> <br><br>
+        <input type="text" class="login-input" name="username" placeholder="username" required/> <br><br>
         <label>Password</label>
-        <input type="password" class="login-input" name="Password" placeholder="Password" required/><br><br>
+        <input type="password" class="login-input" name="password" placeholder="password" required/><br><br>
         <input type="submit" class="login-button" name="Login" value="Login" />
-        <p class="link">Don't have an account?  <a href="register-page.php">  Register</a></p>
+        <p class="link">Don't have an account?  <a href="register-page.php" style="color: #fff;">  Register</a></p>
     </form>
-=======
-    <style><?php include "css/loginStyles.css"; ?> </style>
-    <?php
-    //  when form is submitted, check if user already exists in the database 
-    //create a user session 
-    //redirect users to home page
-    ?>
-    <div class="main">
-        <form class="form" action="" method="post">
-            <h1 class="login-title">Login</h1>
-            <label>Username</label>
-            <input type="text" class="login-input" name="Username" placeholder="Username" required/> <br><br>
-            <label>Password</label>
-            <input type="password" class="login-input2" name="Password" placeholder="Password" required/><br><br>
-            <p class="link">Don't have an account?  <a href="register-page.php" class="link2"><u>  Register</u></a></p>
-            <input type="submit" class="login-button" name="Login" value="Login" />
-        </form>
     </div>
->>>>>>> c20aa1ab311a9dd1987ce9c846b6473977974458
 </body>
 </html>

@@ -13,6 +13,8 @@ of usage -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
      <!-- custom css style link -->
      <style><?php include "css/style.css"; ?> </style>
+     <!-- font awesome link -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.1.1/css/all.css">
     <title>Cart</title>
 </head>
 <body>
@@ -21,7 +23,30 @@ of usage -->
     <section class="cart">
         <h1 class="title">Your Cart</h1>
         <div class="box-container">
+        <br><br>
+      <table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Author</th>
+      <th scope="col">Title</th>
+      <th scope="col">Price</th>
+      <th scope="col">Image</th>
+      <th scope="col">Edit</th>
       
+    </tr>
+  </thead>
+  <tbody>
+        <tr>
+         <td> </td>
+         <td> </td>
+         <td></td>
+         <td> </td>
+         <td> <button type="submit" name="Edit" class="btn btn-danger">Remove</button>
+    
+        </td>
+         </tr>
+  </tbody>
+</table>
           
       </div>
         </div>
