@@ -10,16 +10,11 @@ of usage -->
 
         <div class="header2">
             <nav class="navbar">
-            <a href="admin.php" class="logo">Admin Portal</a>
-                <a href="#">home</a>
-                <a href="#">products</a>
-                <a href="#">orders</a>
-                <a href="#">students</a>
-                <a href="#">messages</a>
+            <h style="margin-left: 20px; font-size:30px;">Admin Portal Dashboard<h1>
             </nav>
-            <div class="icons">
-                <div id="user" class="fa-solid fa-user"></div>
-            </div>
        </div>
+       <div class="admin-login-btn">
+            <a href="logoutUser.php" style="text-decoration:none;">Logout</a>
+             </div>
 </div>
 </header>

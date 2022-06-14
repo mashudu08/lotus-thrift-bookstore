@@ -16,6 +16,6 @@ of usage -->
                 <div id="user" class="fa-solid fa-user"></div>
                 <a href="cart-page.php"><i  class="fa-solid fa-cart-shopping"></i></a>
             </div>
-            <p class="links"><a href="login-page.php">Login</a> | <a href="register-page.php">Register</a></p>
+            <p class="links"><a href="logoutUser.php">Logout</a></p>
        </div>
 </header>

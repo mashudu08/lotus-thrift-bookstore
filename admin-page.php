@@ -1,7 +1,13 @@
 <!-- ST10115884 Mashudu Luvhengo 
      ST10118368 Ledwaba David
 The code is my own work unless stated otherwise as a comment at the point 
-of usage -->
+of usage
+------------------
+References
+------------------
+CodeXWorld. 7 December 2021.[Online]. Store and Retrieve Image from MySQL Database using PHP. 
+Available on: https://www.codexworld.com/store-retrieve-image-from-database-mysql-php/ . Accessed: 13 June 2022
+-->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -20,10 +26,8 @@ of usage -->
     <?php include 'admin-header.php'; ?>
 
     <div class="container">
-        <h1>Dashboard</h1>
         <div class="container-fluid pb-3">
-    <div class="d-grid gap-3" style="grid-template-rows: 1fr 2fr; height:500px">
-    <!-- VIEW , VERIFY AND DELETE USERS -->
+    <div class="d-grid gap-3" style="grid-template-rows: 1fr 2fr; height:400px">  
       <div class="bg-light border rounded-3">
           <h3 style="text-align: center;">Student users</h3> 
           <table class="table">
@@ -39,6 +43,7 @@ of usage -->
   </thead>
   <tbody>
     <?php 
+      // VIEW , VERIFY AND DELETE USERS
     //  FETCHING USER DETAILS FROM DATABASE
         include 'db-connect.php';
          $select_users = mysqli_query($dbconnect, "SELECT * FROM `user`");
@@ -49,14 +54,9 @@ of usage -->
          <td> <?php echo $fetch_users['name']; ?></td>
          <td> <?php echo $fetch_users['stNumber']; ?></td>
          <td> <?php echo $fetch_users['username']; ?></td>
-         <td> <button type="submit" name="update" class="btn btn-success">Verify</button>
-          <!-- <span style="color: php 
-         if($fetch_users['isVerfied'] == 0 ){ echo 'var(--orange)'; } ?>"><hp echo $fetch_users['user_type']; ?></span> --> </td>
-          <!-- if isVerified === 0{
-           $select_isVerified = mysqli_query($dbconnect, "UPDATE isVerified FRO `user` WHERE userId = '$userId'") or die('query failed');
-            
-          }  -->
-
+         <td> <button type="submit" name="update" <?php $fetch_users['isVerified'] ?> 
+          onclick= "onUpdate($fetch_users['userId'])" class="btn btn-success">Verify</button>
+          <span></span></td>
          <td><a href="admin-page.php?delete=<?php echo $fetch_users['userId']; ?>" onclick="return confirm('delete this user?');" class="delete-btn">delete user</a></td>
          </tr>
        <?php
@@ -64,7 +64,6 @@ of usage -->
         ?>
   </tbody>
 </table>
-
         <br><br><br><br><br><br><br><br><br><br>
       </div>
 
@@ -73,15 +72,7 @@ of usage -->
       <h3 style="text-align: center;">Books</h3> 
          <p>Add new book</p>
          <?php
-              // include 'db-connect.php';
-                // session_start();
-
-              //  $admin_id = $_SESSION['adminId'];
-
-              //   if(!isset($admin_id)){
-              //   header('location:admin-login.php');
-              //   };
-
+        // Storing image in from database (CodeXWorld. 2021)
                 if(isset($_POST['add-book'])){
 
                   $author = mysqli_real_escape_string($dbconnect, $_POST['author']);
@@ -91,25 +82,22 @@ of usage -->
                   $tmp_name = $_FILES['image']['tmp_name'];
                   $folder = "./img/" . $filename;
                   $description = mysqli_real_escape_string($dbconnect, $_POST['description']);
+                  $imgContent = addslashes(file_get_contents($tmp_name));
 
-              //  $select_product_name = mysqli_query($dbconnect, "INSERT INTO books");
               $insert_book = mysqli_query($dbconnect, "INSERT INTO `books`(author,title, price, image, description) 
-              VALUES('$author','$title', '$price', '$filename', '$description')") or die('query failed');
+              VALUES('$author','$title', '$price', '$imgContent', '$description')") or die('query failed');
               
-              if (move_uploaded_file($tmp_name, $folder)) {
+              if ($insert_book) {
                 echo "<h3>  Image uploaded successfully!</h3>";
             } else {
                 echo "<h3>  Failed to upload image!</h3>";
             }
-            //closing the connection
-        mysqli_close($dbconnect);
-        $dbconnect = FALSE;
              }
+
              unset($_POST['add-book']);
           ?> 
 
   <form action="" method="post" enctype="multipart/form-data" style="padding: 10px;">
- <!-- <div class="row mb-2"> -->
       <label>Author</label> 
       <input type="text" name="author" class="box" required><br><br>
       <label>Title</label> 
@@ -121,7 +109,6 @@ of usage -->
       <label>Message</label> <br>
       <textarea class="text-input" name="description" placeholder="Enter book description" cols="60" rows="5" required></textarea><br><br>
       <input type="submit" value="add book" name="add-book" class="btn-button">
-      <!-- </div> -->
    </form>
 
   <br><br>
@@ -142,6 +129,12 @@ of usage -->
     <?php 
         include 'db-connect.php';
          $select_users = mysqli_query($dbconnect, "SELECT * FROM `books`");
+          function deleteBook($bookId) {
+            echo 'DELETEING BOOK';
+            $delete_book =  mysqli_query($dbconnect, "DELETE FROM `books` WHERE bookId = '$bookId'");
+            header('location:admin-page.php');
+          }
+
          while($fetch_users = mysqli_fetch_assoc($select_users)){
         ?>
         <tr>
@@ -149,8 +142,9 @@ of usage -->
          <td> <?php echo $fetch_users['author']; ?></td>
          <td> <?php echo $fetch_users['title']; ?></td>
          <td> <?php echo $fetch_users['price']; ?></td>
-         <td> <img src=img/ <?php echo $fetch_users ['filename']; ?> > </td>
-         <td> <button type="submit" name="delete" class="btn btn-danger">Delete</button></td>
+         <!-- retrieving image from database (CodeXWorld. 2021) -->
+         <td> <img src="data:image/jpg;charset=utf8;base64", <?php base64_encode($fetch_users['image']);?> /></td>
+         <td> <button type="submit" name="delete" onclick="onDelete($fetch_users['bookId'])" class="btn btn-danger">Delete</button></td>
          </tr>
        <?php
          };
@@ -163,5 +157,14 @@ of usage -->
 
   </div>
     </div>
+    <script>
+      function onDelete(bookId) {
+        var result = "<?php deleteBook(bookId); ?>";
+      }
+
+      function onUpdate(isVerfied){
+        var result = "<?php  mysqli_query($dbconnect, "UPDATE `user` SET ,`isVerified`='1' WHERE `user`.`userId` = `user`.`userId`");?>"
+      }
+    </script>
 </body>
 </html>

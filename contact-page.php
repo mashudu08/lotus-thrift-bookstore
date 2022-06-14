@@ -14,12 +14,6 @@ Accessed: 25 May 2022
 
      session_start();
 
-     $user_id = $_SESSION['userId'];
-
-     if(!isset($user_id)){
-         header('location:login-page.php');
-     }
-
     if(isset($_POST['submit'])){
         $name = mysqli_real_escape_string($dbconnect, $_POST['name']);
         $email = mysqli_real_escape_string($dbconnect, $_POST['email']);
@@ -49,23 +43,19 @@ Accessed: 25 May 2022
 <body>
     <?php include 'header.php'; ?>
 
-     <!-- contact form styling using Bootstrap -->
-     <div class="main">
-<section class="contact">
-    <div class="row mb-3">
+     <!-- contact form styling using Bootstrap (Bootstrap. 2022) -->
+<div class="contact">
     <form class="form" action="" method="post">
-        <h1 class="header-title">Contact</h1>
-        <h3>Send us a message on book enquiries</h3>
+        <h1 style="text-align:center;" class="header-title" >Contact</h1>
+        <h3 style="text-align:center;" >Send us a message on book enquiries</h3><br>
         <label>Name</label>
         <input type="text" class="text-input" name="Name" placeholder="Name" required/> <br><br>
         <label>Email</label>
         <input type="email" class="text-input" name="Email" placeholder="Email" required/><br><br>
-        <label>Message</label> <br><br>
+        <label>Message</label> <br>
         <textarea class="text-input" name="Message" placeholder="Message" cols="30" rows="10" required></textarea><br><br>
         <input type="submit" class="btn-button" name="Send" value="Send" />
     </form>
-    </div>
-</section>
 </div>
 <?php include 'footer.php'; ?>
 </body>
