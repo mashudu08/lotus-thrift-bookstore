@@ -74,7 +74,7 @@ TextbookTrader. 2022. [Online]. Available on: https://textbooktrader.co.za/
                                 <img src="img/thumbnail/books24.jpg">
                                 <p class="desc"><b>Social Media Communications by B. Zhong</b></p>
                                 <p>R225.90</p>
-                                <button class="add_button" name="addToCart">Add to cart</button>
+                                <button onclick="addToCart(item1)" class="add_button" name="addToCart">Add to cart</button>
                             </div>
                         </td>
                     </tr>
@@ -110,3 +110,18 @@ TextbookTrader. 2022. [Online]. Available on: https://textbooktrader.co.za/
         <?php include 'footer.php'; ?>
     </body>
 </html>
+
+
+<script type="text/javascript">
+    var noti = document.querySelector('fa-cart-shopping');
+    var books = document.querySelector('books');
+    var button = document.querySelector('button');
+
+    for(but of button)
+    {
+        but.addEventListener('click', (e)=>{var add = Number(noti.getAttribute('data-count') || 0);
+        noti.setAttribute('data-count', add + 1);
+        noti.classList.add('zero');
+        })
+    }
+</script>

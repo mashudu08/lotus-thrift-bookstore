@@ -18,3 +18,18 @@ function viewBook(item)
     bookItem.append(selectedItem);
 
 }
+
+function addToCart(item)
+{
+    var noti = document.querySelector('fa-cart-shopping');
+    var books = document.querySelector('books');
+    var button = document.querySelector('button');
+
+    for(but of button)
+    {
+        but.addEventListener('click', (e)=>{var add = Number(noti.getAttribute('data-count') || 0);
+        noti.setAttribute('data-count', add + 1);
+        noti.classList.add('zero');
+        })
+    }
+}

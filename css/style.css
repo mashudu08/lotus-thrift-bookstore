@@ -57,33 +57,41 @@ a{
     height: 30px;
 }
 
+.fa-cart-shopping.zero::before
+{
+    opacity: 1;
+}
+
 /*SELL PAGE*/
 .sell-books {
     margin-left: 30%;
-   margin-bottom: 8px;
-   border-radius: 5px;
-   background-color: #f2f2f2;
-   padding: 10px 50px ;
-   width: 500px;
+    margin-bottom: 8px;
+    border-radius: 5px;
+    background-color: #f2f2f2;
+    padding: 10px 50px ;
+    width: 500px;
 }
 
 .sell-books form {
     display: inline-block;
 }
 
+
 /* HEAD */
-.btn-button
+.btn-reqbutton
 {
-    width: 190px;
+    width: 250px;
     border: 1px;
     border-radius: 15px;
+    background-color: #1B263B;
+    color: #ffffff;
     size: 18px;
     font-size: 15px;
     cursor: pointer;
     transition: 0.20px;
 }
 
-.btn-button:hover
+.btn-reqbutton:hover
 {
     color: #ffffff;
     background-color: darkgreen;
