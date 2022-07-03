@@ -55,7 +55,7 @@ GeeksforGeeks. 31 July 2021. [Online]. How to encrypt and decrypt passwords usin
   
         //executing the query
         $dbResult = @mysqli_query($dbconnect, $sql);
-        echo $dbResult;
+        // echo $dbResult;
 
         if ($dbResult === FALSE) {
           echo "Error inserting into the database: ". mysqli_connect_error();
