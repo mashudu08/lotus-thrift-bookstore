@@ -61,9 +61,22 @@ a{
     display: inline-block;
 }
 
+.btn-button
+{
+    width: 190px;
+    border: 1px;
+    border-radius: 15px;
+    size: 18px;
+    font-size: 15px;
+    cursor: pointer;
+    transition: 0.20px;
+}
 
-
-
+.btn-button:hover
+{
+    color: #ffffff;
+    background-color: darkgreen;
+}
 
 
 
