@@ -71,7 +71,26 @@ a{
     display: inline-block;
 }
 
-.sell-books  input[type=text],input[type= email], textarea{
+/* HEAD */
+.btn-button
+{
+    width: 190px;
+    border: 1px;
+    border-radius: 15px;
+    size: 18px;
+    font-size: 15px;
+    cursor: pointer;
+    transition: 0.20px;
+}
+
+.btn-button:hover
+{
+    color: #ffffff;
+    background-color: darkgreen;
+}
+
+.sell-books  input[type=text],input[type= email], textarea
+{
     width: 100%;
     padding: 12px; 
     border: 1px solid #ccc; 
@@ -79,10 +98,11 @@ a{
     box-sizing: border-box; 
     margin: 0;
     resize: vertical 
-  }
+}
 
 /* ADMIN LOGIN BUTTON*/
-.admin-login-btn a{
+.admin-login-btn a
+{
     text-decoration: none;
     display: inline-block;
     color: var(--btn-bg-color);
@@ -112,6 +132,7 @@ a{
   }
   .contact form {
     display: inline-block;
+/* 9e178e23c686fd1c8ed03f48b4ab0688c28d2165 */
 }
 
   .contact input[type=text],input[type= email], textarea{

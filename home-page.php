@@ -22,7 +22,8 @@ TextbookTrader. 2022. [Online]. Available on: https://textbooktrader.co.za/
     <body>
         <?php include 'header.php'; ?>
             <style><?php include "css/homeStyles.css";?></style>
-            
+            <script src="js/homeJs.js"></script>
+
             <div class="container">
                 <h2><u>How it works</u></h2>
                 <div class="divider">
@@ -54,7 +55,7 @@ TextbookTrader. 2022. [Online]. Available on: https://textbooktrader.co.za/
                     <tr>
                         <td>
                             <div class="books">
-                                <img src="img/thumbnail/books22.jpg">
+                                <a href="viewBook-page.php" onclick="viewBook(item1)"><img src="img/thumbnail/books22.jpg"></a>
                                 <p class="desc"><b>Music Theory for Beginners by P. Hoffman</b></p>
                                 <p>R450.80</p>
                                 <button class="add_button" name="addToCart">Add to cart</button>
@@ -62,7 +63,7 @@ TextbookTrader. 2022. [Online]. Available on: https://textbooktrader.co.za/
                         </td>
                         <td>
                             <div class="books">
-                                <img src="img/thumbnail/books23.jpg">
+                            <a href="viewBook-page.php"><img onclick="viewBook(item1)" src="img/thumbnail/books23.jpg"></a>
                                 <p class="desc"><b>The basics of filmmaking by B. Brown</b></p>
                                 <p>R620.58</p>
                                 <button class="add_button" name="addToCart">Add to cart</button>

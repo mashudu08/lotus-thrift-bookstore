@@ -17,16 +17,8 @@ of usage -->
     <body>
         <?php include 'header.php'; ?>
         <style><?php include "css/viewBookStyles.css";?></style>
-            <div class="pic">
-                <img src="img/thumbnail/books19.jpg" alt="">
-            </div>
-            <div class="details">
-                <p class="author"><b>Author</b></p>
-                <p>Book name</p>
-                <p>price of the book</p>
-                <p>description</p>
-                <button class="add_button" name="Add">Add to Cart</button>
-            </div>
+        <div id="view"></div>
+            
         <?php include 'footer.php'; ?>
     </body>
 </html>
