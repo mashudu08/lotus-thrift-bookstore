@@ -21,6 +21,83 @@ of usage -->
             <center>
                 <table>
                     <caption><h2>Shop Books</h2></caption>
+
+                    <?php 
+                        include 'db-connect.php'; // Get db instance
+                        $books = array(); // Array  to hold all books read from db
+
+                        $books = mysqli_query($dbconnect, "SELECT * FROM `books`"); // Query to db for getting all books
+
+                        $books_arr = mysqli_fetch_all($books, MYSQLI_ASSOC); // Convert all read bbooks into assocc array
+
+                        ?>
+
+                        <?php 
+                        $index = 0; // Flag used to create table rows
+                        foreach ($books_arr as $book) : // Foreach used to cycle through array
+                            // This if statement creates the initial table row
+                                if ($index == 0) { 
+                                    ?> 
+                                    <tr>
+                                    <?php    
+                                }
+                                ?>
+                                
+                                 <!-- Display the book details -->
+                                <td>
+                                    <div class="books">
+                                    <?php echo '<img src="data:img/jpg;charset=utf8;base64, '. base64_encode($book['image']) .'" width="300px" height="350px" />'?>
+                                        <p class="desc"><b><?php echo $book['author']; ?></b></p>
+                                        <p class="desc">R<?php echo $book['price']; ?></p>
+                                        <button class="add_button" name="addToCart">Add to cart</button>
+                                    </div>
+                                </td>
+
+                                <!-- This condition  create the closing table row if three books have already been displayed -->
+                                <?php if ($index == 2) {
+                                    ?> 
+                                    </tr>
+                                     <?php   
+                                }
+                                ?>
+
+                                <?php if ($index == 2) {
+                                    $index = 0; // Set the flag back to initial state   
+                                } 
+                                
+                                else {
+                                    $index++; // Increment flag
+                                }
+                        endforeach // End foreach
+                        ?>
+                         
+
+                        <!-- <td>
+                            <div class="books">
+                                <img src="img/thumbnail/books3.jpg">
+                                <p class="desc"><b>Information Technology Essentails</b></p>
+                                <p>R450.80</p>
+                                <button class="add_button" name="addToCart">Add to cart</button>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="books">
+                                <img src="img/thumbnail/books4.jpg">
+                                <p class="desc"><b>Security Engineering</b></p>
+                                <p>R620.58</p>
+                                <button class="add_button" name="addToCart">Add to cart</button>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="books">
+                                <img src="img/thumbnail/books5.png">
+                                <p class="desc"><b>Practical Cryptography for Developers</b></p>
+                                <p>R225.90</p>
+                                <button class="add_button" name="addToCart">Add to cart</button>
+                            </div>
+                        </td>
+                    </tr>
+
                     <tr>
                         <td>
                             <div class="books">
@@ -154,7 +231,7 @@ of usage -->
                                 <button class="add_button" name="addToCart">Add to cart</button>
                             </div>
                         </td>
-                    </tr>
+                    </tr> -->
                 </table>
             </center>
         </div>  
