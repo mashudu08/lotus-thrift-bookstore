@@ -1,4 +1,9 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap');
+/* 
+    ST10115884 Mashudu Luvhengo 
+    ST10118368 Ledwaba David
+    The code is my own work unless stated otherwise as a comment at the point of usage 
+*/
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400&display=swap');
 :root{
     --main-color:#000000;
     --secondary-color: #ffffff;
@@ -10,6 +15,7 @@
     font-family: 'Poppins', sans-serif;
     margin: 0;
     padding: 0;
+    font-weight: 600;
 }
 
 a{
@@ -53,14 +59,19 @@ a{
 
 /*SELL PAGE*/
 .sell-books {
-   text-align: center;
+    margin-left: 30%;
    margin-bottom: 8px;
+   border-radius: 5px;
+   background-color: #f2f2f2;
+   padding: 10px 50px ;
+   width: 500px;
 }
 
 .sell-books form {
     display: inline-block;
 }
 
+/* HEAD */
 .btn-button
 {
     width: 190px;
@@ -78,7 +89,86 @@ a{
     background-color: darkgreen;
 }
 
+.sell-books  input[type=text],input[type= email], textarea
+{
+    width: 100%;
+    padding: 12px; 
+    border: 1px solid #ccc; 
+    border-radius: 4px; 
+    box-sizing: border-box; 
+    margin: 0;
+    resize: vertical 
+}
 
+/* ADMIN LOGIN BUTTON*/
+.admin-login-btn a
+{
+    text-decoration: none;
+    display: inline-block;
+    color: var(--btn-bg-color);
+    border: 2px solid var(--btn-bg-color);
+    padding: 5px 15px;
+    border-radius: 30px;
+    margin-left: 10%;
+}
+
+/* BUTTON*/
+.btn-button{
+    color: var(--secondary-color);
+    border: #1B263B;
+    border-radius: 30px;
+    width: 120px;
+    height: 30px;
+}
+
+/* CONTACT FORM */
+.contact {
+    margin-left: 30%;
+    margin-bottom: 8px;
+    border-radius: 5px;
+    background-color: #f2f2f2;
+    padding: 10px 50px ;
+    width: 500px;
+  }
+  .contact form {
+    display: inline-block;
+/* 9e178e23c686fd1c8ed03f48b4ab0688c28d2165 */
+}
+
+  .contact input[type=text],input[type= email], textarea{
+    width: 100%;
+    padding: 10px; 
+    border: 1px solid #ccc; 
+    border-radius: 4px; 
+    box-sizing: border-box; 
+    margin: 0;
+    resize: vertical 
+  }
+
+  /* LOGIN FORM */
+  .admin-login-form {
+    border-radius: 5px;
+    /* background-image: url("img/background1"); */
+    padding: 150px;
+    width: 600px;
+    margin-left: 160px;
+    text-align: center;
+    align-content: center;
+    align-items: center ;
+  }
+
+  .admin-login-form form {
+    display: inline-block;
+}
+  .admin-login-form input[type=text],input[type= password] {
+    width: 100%;
+    padding: 12px; 
+    border: 1px solid #ccc; 
+    border-radius: 4px; 
+    box-sizing: border-box; 
+    margin: 0;
+    resize: vertical 
+  }
 
 /* FOOTER */
 .footer{

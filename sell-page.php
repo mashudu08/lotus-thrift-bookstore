@@ -57,6 +57,7 @@ Accessed: 25 May 2022
   
     ?>
      <!-- contact form styling using Bootstrap -->
+<<<<<<< HEAD
     <section class="sell-books">
         <form class="form" action="" method="post">
             <h1 class="header-title">Upload book</h1>
@@ -66,6 +67,17 @@ Accessed: 25 May 2022
             
             <label>Title</label>
             <input type="text" class="text-input" name="Title" placeholder="Title" required/><br><br>
+=======
+<section class="sell-books">
+    <form class="form" action="" method="post">
+        <h1 style="text-align:center;" class="header-title">Upload book</h1>
+        <h3 style="text-align:center;">Upload books you want to sell</h3><br>
+        <label>Author</label>
+        <input type="text" class="text-input" name="Author" placeholder="Author" required/> <br><br>
+        
+        <label>Title</label>
+        <input type="text" class="text-input" name="Title" placeholder="Title" required/><br><br>
+>>>>>>> 9e178e23c686fd1c8ed03f48b4ab0688c28d2165
 
             <label>Price</label>
             <input type="text" class="text-input" name="Price" placeholder="Price" required/><br><br>

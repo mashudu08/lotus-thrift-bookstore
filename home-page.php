@@ -1,7 +1,12 @@
 <!-- ST10115884 Mashudu Luvhengo 
      ST10118368 Ledwaba David
 The code is my own work unless stated otherwise as a comment at the point 
-of usage -->
+of usage
+------------------
+References
+------------------
+TextbookTrader. 2022. [Online]. Available on: https://textbooktrader.co.za/
+-->
 <!DOCTYPE html>
 <html lang="en">
 <head>

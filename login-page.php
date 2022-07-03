@@ -2,31 +2,67 @@
      ST10118368 Ledwaba David
 The code is my own work unless stated otherwise as a comment at the point 
 of usage -->
+<?php
+    include 'db-connect.php';
+    session_start();
+    if(isset($_POST['Login'])){
+
+        $username = mysqli_real_escape_string($dbconnect, $_POST['username']);
+        $pass = mysqli_real_escape_string($dbconnect, $_POST['password']);
+         
+        $select_user = mysqli_query($dbconnect, "SELECT * FROM `user` WHERE username = '$username' ");
+        
+            if(mysqli_num_rows($select_user) > 0){
+                $row = mysqli_fetch_assoc($select_user);
+           
+                    $_SESSION['username'] = $row['username'];
+                    // checking if user is verfied
+                    if (password_verify($pass ,$row['password'])) {
+                        $_SESSION['password'] = $row['password'];
+                        $isVerified =  $row['isVerified'];
+                        if ($isVerified == 1) {
+                            echo '<script>alert("Welcome back")</script>';
+                        //    sleep(3);
+                        //     echo '<script>';
+                        //     echo 'alert("Welcome". $username)';
+                        //    echo '</script>';
+                            header('location:home-page.php');
+                        } else {
+                            echo 'Waiting to be verified';
+                        }
+                    }                        
+                  }else{
+
+                    echo 'Waiting to be verified';
+                  }       
+                
+        }
+    
+    ?>
+
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <style><?php include "css/style.css"; ?> </style>
+    <style><?php include "css/loginStyles.css"; ?> 
+     </style>
     <title>Login</title>
 </head>
-<body>
-    <style><?php include "css/loginStyles.css"; ?> </style>
-    <?php
-    //  when form is submitted, check if user already exists in the database 
-    //create a user session 
-    //redirect users to home page
-    ?>
+<body style=" background-image: url('img/books.jpeg');  background-position: center; background-size: cover;">
+<div class="admin-login-btn" style="margin-left: 1100px;">
+    <a href="admin-login.php">Admin Login</a>
+    </div>
     <div class="main">
-        <form class="form" action="" method="post">
-            <h1 class="login-title">Login</h1>
-            <label>Username</label>
-            <input type="text" class="login-input" name="Username" placeholder="Username" required/> <br><br>
-            <label>Password</label>
-            <input type="password" class="login-input2" name="Password" placeholder="Password" required/><br><br>
-            <p class="link">Don't have an account?  <a href="register-page.php" class="link2"><u>  Register</u></a></p>
-            <input type="submit" class="login-button" name="Login" value="Login" />
-        </form>
+    <form class="form" action="login-page.php" method="post">
+        <h1 class="login-title">Login</h1>
+        <label>Username</label>
+        <input type="text" class="login-input" name="username" placeholder="username" required/> <br><br>
+        <label>Password</label>
+        <input type="password" class="login-input" name="password" placeholder="password" required/><br><br>
+        <input type="submit" class="login-button" name="Login" value="Login" />
+        <p class="link">Don't have an account?  <a href="register-page.php" style="color: #fff;">  Register</a></p>
+    </form>
     </div>
 </body>
 </html>
