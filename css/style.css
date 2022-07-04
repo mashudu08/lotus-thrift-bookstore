@@ -86,7 +86,7 @@ a{
 .btn-button:hover
 {
     color: #ffffff;
-    background-color: darkgreen;
+    background-color: #0877AA;
 }
 
 .sell-books  input[type=text],input[type= email], textarea
@@ -114,7 +114,7 @@ a{
 
 /* BUTTON*/
 .btn-button{
-    color: var(--secondary-color);
+    color: #fff;
     border: #1B263B;
     border-radius: 30px;
     width: 120px;
@@ -124,7 +124,7 @@ a{
 /* CONTACT FORM */
 .contact {
     margin-left: 30%;
-    margin-bottom: 8px;
+    margin-bottom: 35px;
     border-radius: 5px;
     background-color: #f2f2f2;
     padding: 10px 50px ;
@@ -132,7 +132,6 @@ a{
   }
   .contact form {
     display: inline-block;
-/* 9e178e23c686fd1c8ed03f48b4ab0688c28d2165 */
 }
 
   .contact input[type=text],input[type= email], textarea{
@@ -148,7 +147,6 @@ a{
   /* LOGIN FORM */
   .admin-login-form {
     border-radius: 5px;
-    /* background-image: url("img/background1"); */
     padding: 150px;
     width: 600px;
     margin-left: 160px;

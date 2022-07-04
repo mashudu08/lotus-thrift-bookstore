@@ -7,6 +7,13 @@ References
 ------------------
 TextbookTrader. 2022. [Online]. Available on: https://textbooktrader.co.za/
 -->
+<?php 
+session_start(); 
+$username = $_SESSION['username'];
+echo 'Welcome back '. $username;
+include 'header.php';
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,31 +22,28 @@ TextbookTrader. 2022. [Online]. Available on: https://textbooktrader.co.za/
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- custom css style link -->
     <style><?php include "css/style.css"; ?> </style>
+    <style><?php include "css/homeStyles.css";?></style>
     <!-- font awesome link -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.1.1/css/all.css">
     <title>Lotus Thrift Bookstore</title>
 </head>
     <body>
-        <?php include 'header.php'; ?>
-            <style><?php include "css/homeStyles.css";?></style>
-            <script src="js/homeJs.js"></script>
-
             <div class="container">
-                <h2><u>How it works</u></h2>
+                <h2>How it works</h2>
                 <div class="divider">
-                    <h3>SELL TEXTBOOKS </h3>
+                    <h3>Sell Textbooks </h3>
                     <p>Get cash for textbooks you no longer require.</p>
                     <p>Students from around the country will have access to view and buy your used textbooks.</p>
                     <p>Get paid within 5 days of selling your book directly into your bank account.</p>
                     <p>Our couriers will collect each book from your door at no additional cost to you.</p>
                 </div>
                 <div class="divider">
-                    <h3>BUY TEXTBOOKS </h3>
+                    <h3>Buy Textbooks </h3>
                     <p>Easily find used textbooks listed by Students from around the country.</p>
                     <p>Receive books within 5 days from payment delivered free to your door</p>
                     <p>Books listed first are sold first.</p>
                     <p> </p>
-                </div>
+                </div><br>
                 <div class="contain_button">
                     <a href="shopBooks-page.php" class="work">Buy</a> 
                 </div>
@@ -47,66 +51,63 @@ TextbookTrader. 2022. [Online]. Available on: https://textbooktrader.co.za/
                 <div class="contain_button">
                     <a href="sell-page.php" class="work">Sell</a>
                 </div>
+                <br>
             </div>
             
             <center>
                 <table>
                     <caption><h1>Latest Arrival</h1></caption>
-                    <tr>
-                        <td>
-                            <div class="books">
-                                <a href="viewBook-page.php" onclick="viewBook(item1)"><img src="img/thumbnail/books22.jpg"></a>
-                                <p class="desc"><b>Music Theory for Beginners by P. Hoffman</b></p>
-                                <p>R450.80</p>
-                                <button class="add_button" name="addToCart">Add to cart</button>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="books">
-                            <a href="viewBook-page.php"><img onclick="viewBook(item1)" src="img/thumbnail/books23.jpg"></a>
-                                <p class="desc"><b>The basics of filmmaking by B. Brown</b></p>
-                                <p>R620.58</p>
-                                <button class="add_button" name="addToCart">Add to cart</button>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="books">
-                                <img src="img/thumbnail/books24.jpg">
-                                <p class="desc"><b>Social Media Communications by B. Zhong</b></p>
-                                <p>R225.90</p>
-                                <button class="add_button" name="addToCart">Add to cart</button>
-                            </div>
-                        </td>
-                    </tr>
+                    <?php 
+                        include 'db-connect.php'; // Get db instance
+                        $books = array(); // Array  to hold all books read from db
 
-                    <tr>
-                        <td>
-                            <div class="books">
-                                <img src="img/thumbnail/novel4.jfif">
-                                <p class="desc"><b>Born A Crime by T. Noah</b></p>
-                                <p>R120.00</p>
-                                <button class="add_button" name="addToCart">Add to cart</button>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="books">
-                                <img src="img/thumbnail/books26.jpg">
-                                <p class="desc"><b>Hustle Harder, Hustle Smarter by C. Jackson</b></p>
-                                <p>R320.00</p>
-                                <button class="add_button" name="addToCart">Add to cart</button>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="books">
-                                <img src="img/thumbnail/novel6.jpg">
-                                <p class="desc"><b>A South African nightmare RAPE by p. Godla</b></p>
-                                <p>R160.00</p>
-                                <button class="add_button" name="addToCart">Add to cart</button>
-                            </div>
-                        </td>
-                    </tr>
+                        $books = mysqli_query($dbconnect, "SELECT * FROM `books` LIMIT 6"); // Query to db for getting all books
+
+                        $books_arr = mysqli_fetch_all($books, MYSQLI_ASSOC); // Convert all read bbooks into assocc array
+
+                        ?>
+
+                        <?php 
+                        $index = 0; // Flag used to create table rows
+                        foreach ($books_arr as $book) : // Foreach used to cycle through array
+                            // This if statement creates the initial table row
+                                if ($index == 0) { 
+                                    ?> 
+                                    <tr>
+                                    <?php    
+                                }
+                                ?>
+                                
+                                 <!-- Display the book details -->
+                                <td>
+                                    <div class="books">
+                                    <?php echo '<img src="data:img/jpg;charset=utf8;base64, '. base64_encode($book['image']) .'" width="280px" height="330px" />'?>
+                                        <p class="desc"><b><?php echo $book['author']; ?></b></p>
+                                        <p class="desc">R<?php echo $book['price']; ?></p>
+                                        <button class="add_button" name="addToCart">Add to cart</button>
+                                    </div>
+                                </td>
+
+                                <!-- This condition  create the closing table row if three books have already been displayed -->
+                                <?php if ($index == 2) {
+                                    ?> 
+                                    </tr>
+                                     <?php   
+                                }
+                                ?>
+
+                                <?php if ($index == 2) {
+                                    $index = 0; // Set the flag back to initial state   
+                                } 
+                                
+                                else {
+                                    $index++; // Increment flag
+                                }
+                        endforeach // End foreach
+                        ?>
                 </table>
             </center>
         <?php include 'footer.php'; ?>
     </body>
 </html>
+<script src="js/homeJs.js"></script>

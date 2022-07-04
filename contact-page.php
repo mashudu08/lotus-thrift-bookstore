@@ -14,19 +14,20 @@ Accessed: 25 May 2022
 
      session_start();
 
-    if(isset($_POST['submit'])){
-        $name = mysqli_real_escape_string($dbconnect, $_POST['name']);
-        $email = mysqli_real_escape_string($dbconnect, $_POST['email']);
-        $msg = mysqli_real_escape_string($dbconnect, $_POST['message']);
-    
-    $select_message = mysqli_query($dbconnect, "SELECT * FROM `connect` WHERE name = '$name' AND email = '$email' AND message = '$msg'");
+    if(isset($_POST['send'])){
+        $name =mysqli_real_escape_string($dbconnect, $_POST['name']);
+        $email = mysqli_real_escape_string($dbconnect,$_POST['email']);
+        $msg =  mysqli_real_escape_string($dbconnect,$_POST['message']);
+        $user_id = $_SESSION['userId'];
 
-    if(mysqli_num_rows($select_message) > 0){
-        $message[] = 'message sent already!';
-     }else{
-        mysqli_query($conn, "INSERT INTO `message`(userId, name, email, message) VALUES('$user_id', '$name', '$email', '$msg')") or die('query failed');
-        $message[] = 'message sent successfully!';
+     $message = mysqli_query($dbconnect, "INSERT INTO `contact`(userId, name, email, message) VALUES( '$user_id','$name', '$email', '$msg')");
+
+     if($message){
+        echo "message sent successfully";
      }
+     else{
+        die(mysqli_error($dbconnect));
+     } 
 }
     ?>
 <html lang="en">
@@ -44,17 +45,17 @@ Accessed: 25 May 2022
     <?php include 'header.php'; ?>
 
      <!-- contact form styling using Bootstrap (Bootstrap. 2022) -->
+     <h2 style="text-align:center;" class="header-title" >Contact</h2>
+     <p style="text-align:center;  margin-bottom: 20px;" >Send us a message about book enquiries</p>
 <div class="contact">
     <form class="form" action="" method="post">
-        <h1 style="text-align:center;" class="header-title" >Contact</h1>
-        <h3 style="text-align:center;" >Send us a message on book enquiries</h3><br>
         <label>Name</label>
-        <input type="text" class="text-input" name="Name" placeholder="Name" required/> <br><br>
+        <input type="text" class="text-input" name="name" placeholder="Name" required/> <br><br>
         <label>Email</label>
-        <input type="email" class="text-input" name="Email" placeholder="Email" required/><br><br>
+        <input type="email" class="text-input" name="email" placeholder="Email" required/><br><br>
         <label>Message</label> <br>
-        <textarea class="text-input" name="Message" placeholder="Message" cols="30" rows="10" required></textarea><br><br>
-        <input type="submit" class="btn-button" name="Send" value="Send" />
+        <textarea class="text-input" name="message" placeholder="Message" cols="70" rows="10" required></textarea><br><br>
+        <input type="submit" class="btn-button" name="send" value="send" />
     </form>
 </div>
 <?php include 'footer.php'; ?>
