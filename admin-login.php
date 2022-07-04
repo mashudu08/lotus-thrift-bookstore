@@ -36,7 +36,21 @@ Accessed: 25 May 2022
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link ref="css/style.css" type="style/text" rel="stylesheet">
+        <!-- custom css style link -->
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400&display=swap');
+     *{
+        font-family: 'Poppins', sans-serif;
+     } 
+     .button{
+    color: #fff;
+    background-color: #1B263B;
+    border: #1B263B;
+    border-radius: 30px;
+    width: 120px;
+    height: 30px;
+     }
+    </style>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <title>Admin Login</title>
@@ -55,11 +69,7 @@ Accessed: 25 May 2022
         <label for="password" class="form-label">Password</label>
         <input type="password" class="form-control" name="password" placeholder="password" required/>
         </div>
-        <input type="submit" class="border border-dark"  name="Login" value="Login" style="color: #1b263b;
-    border: #1B263B;
-    border-radius: 30px;
-    width: 120px;
-    height: 30px;"/>
+        <input type="submit" class="button"  name="Login" value="Login" />
     </form>
     </div>
 </body>

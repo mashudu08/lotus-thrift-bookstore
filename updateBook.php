@@ -8,6 +8,42 @@ References
 CodeXWorld. 7 December 2021.[Online]. Store and Retrieve Image from MySQL Database using PHP. 
 Available on: https://www.codexworld.com/store-retrieve-image-from-database-mysql-php/ . Accessed: 13 June 2022
 -->
+<?php
+include 'db-connect.php';
+session_start();
+        $id=$_GET['updateBookId'];
+        $result= mysqli_query($dbconnect, "SELECT * FROM `books` WHERE bookId=$id");
+        $row = mysqli_fetch_assoc($result);
+        $author = $row['author'];
+        $title =$row['title'];
+        $price = $row['price'];
+        // $imgContent = base64_encode($row['image']);
+        $imgContent ='<img src="data:img/jpg;charset=utf8;base64,'.base64_encode($row['image']).'" width="100px" height="150px"/>';
+        $description = $row['description']; 
+        // Storing image in from database (CodeXWorld. 2021)
+                if(isset($_POST['submit'])){
+                  $author = mysqli_real_escape_string($dbconnect,$_POST['author']);
+                  $title = mysqli_real_escape_string($dbconnect,$_POST['title']);
+                  $price = mysqli_real_escape_string($dbconnect,$_POST['price']);
+                  $filename = $_FILES['image']['name'];
+                  $tmp_name = $_FILES['image']['tmp_name'];
+                  $folder = "./img/" . $filename;
+                  $description = mysqli_real_escape_string($dbconnect,$_POST['description']);
+                  $imgContent = addslashes(file_get_contents($tmp_name));
+
+              $update_book = mysqli_query($dbconnect, "UPDATE `books` SET author='$author',title='$title', price=$price, image='$imgContent', description='$description'");
+              
+              if ($update_book) {
+                echo "Updated successfully!";
+                header('location:admin-page.php');
+            }
+             else{
+                die(mysqli_error($dbconnect));
+            }
+        }
+             unset($_POST['add-book']);
+          ?> 
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -24,7 +60,7 @@ Available on: https://www.codexworld.com/store-retrieve-image-from-database-mysq
 </head>
 <body>
     <?php include 'admin-header.php'; ?>
-
+    <button class="btn-button"><a href="admin-page.php" style="text-decoration: none; color: #fff;">Cancel</a></button>
     <div class="container">
      <div class="container-fluid pb-3">
        <div class="d-grid gap-3" style="grid-template-rows: 1fr 2fr; height:400px">  
@@ -33,42 +69,18 @@ Available on: https://www.codexworld.com/store-retrieve-image-from-database-mysq
       <!-- ADD AND EDIT BOOKS -->
       <div class="bg-light border rounded-3">
       <h3 style="text-align: center;">Update book</h3> 
-      <?php
-        // $id=$_GET['updateBookId'];
-        // Storing image in from database (CodeXWorld. 2021)
-                if(isset($_POST['submit'])){
-                  $author = $_POST['author'];
-                  $title = $_POST['title'];
-                  $price = $_POST['price'];
-                  $filename = $_FILES['image']['name'];
-                  $tmp_name = $_FILES['image']['tmp_name'];
-                  $folder = "./img/" . $filename;
-                  $description = $_POST['description'];
-                  $imgContent = addslashes(file_get_contents($tmp_name));
-
-              $update_book = mysqli_query($dbconnect, "UPDATE `books` SET author='$author',title='$title', price=$price, image='$imgContent', description='$description'");
-              
-              if ($update_book) {
-                echo "Updated successfully!";
-            }
-             else{
-                die(mysqli_error($dbconnect));
-            }
-        }
-            //  unset($_POST['add-book']);
-          ?> 
 
   <form action="" method="post" enctype="multipart/form-data" style="padding: 10px;">
       <label>Author</label> 
-      <input type="text" name="author" class="box" required><br><br>
+      <input type="text" name="author" class="box" value="<?php echo $author;?>"/><br><br>
       <label>Title</label> 
-      <input type="text" name="title" class="box"required><br><br>
+      <input type="text" name="title" class="box" value="<?php echo $title;?>"><br><br>
       <label>Price</label>
-      <input type="text" name="price" class="box" required><br><br>
+      <input type="text" name="price" class="box" value="<?php echo $price;?>"><br><br>
       <label>Image</label>
-      <input type="file" name="image" accept="image/jpg, image/jpeg, image/png" class="box" required><br><br>
-      <label>Message</label> <br>
-      <textarea class="text-input" name="description" placeholder="Enter book description" cols="60" rows="5" required></textarea><br><br>
+      <input type="file" name="image" accept="image/jpg, image/jpeg, image/png" class="box" value="<?php echo $imgContent;?>"><br><br>
+      <label>Description</label> <br>
+      <textarea class="text-input" name="description" placeholder="Enter book description" cols="60" rows="5" value="<?php echo $description;?>"></textarea><br><br>
       <input type="submit" value="add book" name="add-book" class="btn-button">
       
    </form>

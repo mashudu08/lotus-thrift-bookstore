@@ -26,11 +26,15 @@ Available on: https://www.codexworld.com/store-retrieve-image-from-database-mysq
     <?php include 'admin-header.php'; ?>
 
     <div class="container">
-        <div class="container-fluid pb-3">
+    <div class="container-fluid pb-3">
     <div class="d-grid gap-3" style="grid-template-rows: 1fr 2fr; height:400px">  
       <div class="bg-light border rounded-3">
+          <!-- 
+    ---------------------------------------------------------------------------------------------------
+      READ, VERIFY AND DELETE USERS 
+    ---------------------------------------------------------------------------------------------------
+   -->
           <h3 style="font-weight: bold; text-align: center; padding: 10px 0px 0px;">Student users</h3> 
-        
           <br>
           <table class="table">
   <thead>
@@ -45,7 +49,6 @@ Available on: https://www.codexworld.com/store-retrieve-image-from-database-mysq
   </thead>
   <tbody>
     <?php 
-      // VIEW , VERIFY AND DELETE USERS
     //  FETCHING USER DETAILS FROM DATABASE
         include 'db-connect.php';
          $select_users = mysqli_query($dbconnect, "SELECT * FROM `user`");
@@ -57,10 +60,10 @@ Available on: https://www.codexworld.com/store-retrieve-image-from-database-mysq
          <td> <?php echo $fetch_users['stNumber']; ?></td>
          <td> <?php echo $fetch_users['username']; ?></td>
           <td>
-            <button class="btn btn-success"><a href="verifyUser.php?verifyUsers='<?php echo $fetch_users['isVerified'];?>'" class="text-light">Verify</a></button>
+            <button class="btn-button"><a href="verifyUser.php?verifyUsers='<?php echo $fetch_users['isVerified'];?>'" class="text-light" style="text-decoration:none;">Verify</a></button>
           </td>
          <td>
-          <button class="btn btn-danger"><a href="deleteUser.php?deleteUserId='<?php echo $fetch_users['userId']; ?>'" class="text-light">Delete User</a></button>
+          <button class="btn-button"><a href="deleteUser.php?deleteUserId='<?php echo $fetch_users['userId']; ?>'" class="text-light" style="text-decoration:none;">Delete</a></button>
          </td>
          </tr>
        <?php
@@ -69,8 +72,100 @@ Available on: https://www.codexworld.com/store-retrieve-image-from-database-mysq
   </tbody>
 </table>
       </div>
+  <!-- 
+    ---------------------------------------------------------------------------------------------------
+      MESSAGES FROM STUDENT USERS 
+    ---------------------------------------------------------------------------------------------------
+    -->
+      <div class="bg-light border rounded-3">
+          <h3 style="font-weight: bold; text-align: center; padding: 10px 0px 0px;">Messages</h3> 
+        
+          <br>
+          <table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Message ID</th>
+      <th scope="col">User ID</th>
+      <th scope="col">Name</th>
+      <th scope="col">Email</th>
+      <th scope="col">Message</th>
+    </tr>
+  </thead>
+  <tbody>
+    <?php 
+    //  FETCHING MESSAGES FROM DATABASE
+        include 'db-connect.php';
+         $select_message = mysqli_query($dbconnect, "SELECT * FROM `contact`");
+         while($fetch_users = mysqli_fetch_assoc($select_message)){
+        ?>
+        <tr>
+         <td> <?php echo $fetch_users['contactId']; ?></td>
+         <td> <?php echo $fetch_users['userId']; ?></td>
+         <td> <?php echo $fetch_users['name']; ?></td>
+         <td> <?php echo $fetch_users['email']; ?></td>
+         <td> <?php echo $fetch_users['message']; ?></td>
+         </tr>
+       <?php
+         };
+        ?>
+  </tbody>
+</table>
+      </div>
+ <!-- 
+  --------------------------------------------------------------------------------------------------- 
+       STUDENT SELLERS 
+  --------------------------------------------------------------------------------------------------- 
+--> 
+       <div class="bg-light border rounded-3">
+          <h3 style="font-weight: bold; text-align: center; padding: 10px 0px 0px;"> Student Sellers</h3> 
+        
+          <br>
+          <table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Seller ID</th>
+      <th scope="col">User ID</th>
+      <th scope="col">Author</th>
+      <th scope="col">Title</th>
+      <th scope="col">Price</th>
+      <th scope="col">Image</th>
+      <th scope="col">Description</th>
+      <th scope="col">Approve Request</th> 
+    </tr>
+  </thead>
+  <tbody>
+    <?php 
+    //  FETCHING books FROM DATABASE
+        include 'db-connect.php';
+         $select_books = mysqli_query($dbconnect, "SELECT * FROM `sell`");
+         while($fetch_users = mysqli_fetch_assoc($select_books)){
+        ?>
+        <tr>
+         <td> <?php echo $fetch_users['bookId']; ?></td>
+         <td> <?php echo $fetch_users['username']; ?></td>
+         <td> <?php echo $fetch_users['author']; ?></td>
+         <td> <?php echo $fetch_users['title']; ?></td>
+         <td> <?php echo $fetch_users['price']; ?></td>
+         <!-- retrieving image from database (CodeXWorld. 2021) -->
+         <td> <?php echo '<img src="data:img/jpg;charset=utf8;base64, '. base64_encode($fetch_users['image']) .'" width="100px" height="150px" />'?>
+         </td>
+         <td> <?php echo $fetch_users['description']; ?></td>
+         <td> 
+          <button class="btn-button"><a href="approveBook.php?approveBookId='<?php echo $fetch_users['bookId']; ?>'" class="text-light" style="text-decoration:none;">Approve</a></button>
+        </td>
+         </tr>
+       <?php
+         };
+        ?>
+  </tbody>
+</table>
+      </div>
 
-      <!-- ADD AND EDIT BOOKS -->
+  <!-- 
+    --------------------------------------------------------------------------------------------------- 
+     CREATE, READ, UPDATE, AND DELETE BOOKS
+    --------------------------------------------------------------------------------------------------- 
+--> 
       <div class="bg-light border rounded-3">
       <h3 style="font-weight: bold; text-align: center; padding: 10px 0px 0px;">Books</h3> 
       <hr>
@@ -94,9 +189,9 @@ Available on: https://www.codexworld.com/store-retrieve-image-from-database-mysq
               VALUES('$author','$title', '$price', '$imgContent', '$description')") or die('query failed');
               
               if ($insert_book) {
-                echo "<h3>  Image uploaded successfully!</h3>";
+                echo "Book uploaded successfully!";
             } else {
-                echo "<h3>  Failed to upload image!</h3>";
+                echo "Failed to upload book!";
             }
              }
 
@@ -137,12 +232,7 @@ Available on: https://www.codexworld.com/store-retrieve-image-from-database-mysq
     <?php 
         include 'db-connect.php';
          $select_users = mysqli_query($dbconnect, "SELECT * FROM `books`");
-          // function deleteBook($bookId) {
-          //   echo 'DELETEING BOOK';
-          //   $delete_book =  mysqli_query($dbconnect, "DELETE FROM `books` WHERE bookId = '$bookId'");
-          //   header('location:admin-page.php');
-          // }
-
+        
          while($fetch_users = mysqli_fetch_assoc($select_users)){
         ?>
         <tr>
@@ -153,10 +243,10 @@ Available on: https://www.codexworld.com/store-retrieve-image-from-database-mysq
          <!-- retrieving image from database (CodeXWorld. 2021) -->
          <td> <?php echo '<img src="data:img/jpg;charset=utf8;base64, '. base64_encode($fetch_users['image']) .'" width="100px" height="150px" />'?>
          </td>
-         
          <td> 
-          <button class="btn btn-danger"><a href="deleteBook.php?deleteBookId='<?php echo $fetch_users['bookId']; ?>'" class="text-light">Delete</a></button>
-          <button class="btn btn-primary"><a href="updateBook.php?updateBookId='<?php echo $fetch_users['bookId']; ?>'" class="text-light">Update</a></button>
+          <br>
+          <button class="btn-button"><a href="deleteBook.php?deleteBookId='<?php echo $fetch_users['bookId']; ?>'" class="text-light" style="text-decoration:none;">Delete</a></button><br><br>
+          <button class="btn-button"><a href="updateBook.php?updateBookId='<?php echo $fetch_users['bookId']; ?>'" class="text-light" style="text-decoration:none;">Update</a></button>
         </td>
          </tr>
        <?php

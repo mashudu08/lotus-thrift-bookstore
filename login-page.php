@@ -16,13 +16,15 @@ of usage -->
                 $row = mysqli_fetch_assoc($select_user);
            
                     $_SESSION['username'] = $row['username'];
+                    $_SESSION['userId'] = $row['userId'];
                     // checking if user is verfied
                     if (password_verify($pass ,$row['password'])) {
                         $_SESSION['password'] = $row['password'];
                         $isVerified =  $row['isVerified'];
                         if ($isVerified == 1) {
-                            echo '<script>alert("Welcome back")</script>';
-                        //    sleep(3);
+                        //    echo '<script>
+                        //          alert("Welcome back ". $username. "!")
+                        //          </script>';
                         //     echo '<script>';
                         //     echo 'alert("Welcome". $username)';
                         //    echo '</script>';
@@ -50,9 +52,9 @@ of usage -->
     <title>Login</title>
 </head>
 <body style=" background-image: url('img/books.jpeg');  background-position: center; background-size: cover;">
-<div class="admin-login-btn" style="margin-left: 1100px;">
+<button class="admin-login-btn" style="margin-left: 1100px;">
     <a href="admin-login.php">Admin Login</a>
-    </div>
+    </button>
     <div class="main">
     <form class="form" action="login-page.php" method="post">
         <h1 class="login-title">Login</h1>
@@ -61,7 +63,7 @@ of usage -->
         <label>Password</label>
         <input type="password" class="login-input" name="password" placeholder="password" required/><br><br>
         <input type="submit" class="login-button" name="Login" value="Login" />
-        <p class="link">Don't have an account?  <a href="register-page.php" style="color: #fff;">  Register</a></p>
+        <p class="link">Don't have an account?  <a href="register-page.php" style="color: #fff;" >  Register</a></p>
     </form>
     </div>
 </body>
