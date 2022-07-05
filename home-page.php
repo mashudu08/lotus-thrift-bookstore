@@ -9,10 +9,15 @@ TextbookTrader. 2022. [Online]. Available on: https://textbooktrader.co.za/
 -->
 <?php 
 session_start(); 
-$username = $_SESSION['username'];
-    echo "<script>
-          window.alert('Welcome back $username');
-     </script>" ;
+    $username = $_SESSION['username'];
+    $refreshed = $_SESSION['isRefreshed'];
+    if (!$refreshed) {
+        echo "<script>
+              alert('Welcome back $username');
+         </script>" ;
+
+         $_SESSION['isRefreshed'] = true;
+    }
 include 'header.php';
 ?>
 
@@ -83,14 +88,11 @@ include 'header.php';
                                  <!-- Display the book details -->
                                 <td>
                                     <div class="books">
-                                    <form method="post" action="" >
                                     <?php echo '<img src="data:img/jpg;charset=utf8;base64, '. base64_encode($book['image']) .'" width="280px" height="330px" />'?>
                                         <p class="desc"><b><?php echo $book['author']; ?></b></p>
                                         <p class="desc"><b><?php echo $book['title'];?></b></p>
                                         <p class="desc">R<?php echo $book['price']; ?></p>
-                                        <input type="number" min="1" max="1" name="quantity" value="1" style="text-align: center;">
                                         <button class="add_button" name="addToCart"><a href="manageCart.php?cartItemId='<?php echo $book['bookId']; ?>'">Add to cart</a></button>
-                                    </form>
                                     </div>
                                 </td>
 
@@ -113,7 +115,6 @@ include 'header.php';
                         ?>
                 </table>
             </center>
-            <br><br>
         <?php include 'footer.php'; ?>
     </body>
 </html>
