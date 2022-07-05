@@ -7,10 +7,11 @@ References
 ------------------
 TextbookTrader. 2022. [Online]. Available on: https://textbooktrader.co.za/
 -->
+<?php include 'header.php'; ?>
 <?php 
 session_start(); 
-$username = $_SESSION['username'];
-echo 'Welcome back '. $username;
+$username = @$_SESSION['username'];
+    echo "Welcome " .$username; 
 ?>
 
 <!DOCTYPE html>
@@ -29,8 +30,7 @@ echo 'Welcome back '. $username;
     <title>Lotus Thrift Bookstore</title>
 </head>
     <body>
-        <?php include 'header.php'; ?>
-            <script src="js/homeJs.js" defer></script>
+        <script src="js/homeJs.js" defer></script>
 
             <div class="container">
                 <h2>How it works</h2>
@@ -85,11 +85,15 @@ echo 'Welcome back '. $username;
                                 
                                  <!-- Display the book details -->
                                 <td>
-                                    <div class="books" data-name="book<?phpecho $num?>">
+                                    <div class="books">
+                                    <form method="post" action="" >
                                     <?php echo '<img src="data:img/jpg;charset=utf8;base64, '. base64_encode($book['image']) .'" width="280px" height="330px" />'?>
                                         <p class="desc"><b><?php echo $book['author']; ?></b></p>
+                                        <p class="desc"><b><?php echo $book['title'];?></b></p>
                                         <p class="desc">R<?php echo $book['price']; ?></p>
-                                        <a href="cart-page.php"><button class="add_button" name="addToCart">Add to cart</button></a>
+                                        <input type="number" min="1" max="1" name="quantity" value="1" style="text-align: center;">
+                                        <button class="add_button" name="addToCart"><a href="manageCart.php?cartItemId='<?php echo $book['bookId']; ?>'">Add to cart</a></button>
+                                    </form>
                                     </div>
                                 </td>
                                 <?php $num++ ?>
@@ -116,15 +120,6 @@ echo 'Welcome back '. $username;
 
             <script src="js/homeJs.js" defer></script>
 
-            <?php 
-                include 'db-connect.php'; // Get db instance
-                $books = array(); // Array  to hold all books read from db
-
-                $books = mysqli_query($dbconnect, "SELECT * FROM `books` LIMIT 6"); // Query to db for getting all books
-
-                $books_arr = mysqli_fetch_all($books, MYSQLI_ASSOC); // Convert all read bbooks into assocc array
-            ?>
-  
             <!-- Code to preview books.-->
             <div class="books-preview">
 
@@ -194,7 +189,7 @@ echo 'Welcome back '. $username;
                     </div>
                 </div>
                 
-            </div>-->
+            </div>
         <?php include 'footer.php'; ?>
     </body>
 </html>

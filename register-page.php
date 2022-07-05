@@ -79,13 +79,13 @@ GeeksforGeeks. 31 July 2021. [Online]. How to encrypt and decrypt passwords usin
     <div class="formMain">
       <form class="form" action="register-page.php" method="POST">
           <label class="label">Name</label>
-          <input type="text" class="login-input" name="name" value="<?=$name?>" placeholder="name" required/><span><?=$name; ?></span><br><br>
+          <input type="text" class="login-input" name="name" required/><span><?=$name; ?></span><br><br>
           <label class="label">ST Number</label>
-          <input type="text" class="login-input" name="stNumber" value="<?=$stNum?>"  placeholder="student number" required/><span><?=$stNum; ?></span><br><br>
+          <input type="text" class="login-input" name="stNumber" required/><span><?=$stNum; ?></span><br><br>
           <label class="label">Username</label>
-          <input type="text" class="login-input" name="username" value="<?=$username?>" placeholder="username" required/><span><?=$username; ?></span><br><br>
+          <input type="text" class="login-input" name="username" required/><span><?=$username; ?></span><br><br>
           <label class="label">Password</label>
-          <input type="password" class="login-input" name="password" placeholder="password"/><span><?=$password; ?></span><br><br>
+          <input type="password" class="login-input" name="password" required/><span><?=$password; ?></span><br><br>
           <input type="submit" class="login-button" name="register" value="Register" />
           <p class="link">Already have registered?  <a href="login-page.php" style="color: #fff;"> Login here</a></p>
       </form>

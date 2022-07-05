@@ -2,6 +2,7 @@
      ST10118368 Ledwaba David
 The code is my own work unless stated otherwise as a comment at the point 
 of usage -->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -21,17 +22,12 @@ of usage -->
             <center>
                 <table>
                     <caption><h2>Shop Books</h2></caption>
-
                     <?php 
                         include 'db-connect.php'; // Get db instance
                         $books = array(); // Array  to hold all books read from db
-
                         $books = mysqli_query($dbconnect, "SELECT * FROM `books`"); // Query to db for getting all books
-
                         $books_arr = mysqli_fetch_all($books, MYSQLI_ASSOC); // Convert all read bbooks into assocc array
-
-                    ?>
-
+                        ?>
                         <?php 
                         $index = 0; // Flag used to create table rows
                         foreach ($books_arr as $book) : // Foreach used to cycle through array
@@ -42,14 +38,19 @@ of usage -->
                                     <?php    
                                 }
                                 ?>
-                                
                                  <!-- Display the book details -->
                                 <td>
                                     <div class="books">
+                                    <form method="post" action="" >
                                     <?php echo '<img src="data:img/jpg;charset=utf8;base64, '. base64_encode($book['image']) .'" width="280px" height="330px" />'?>
                                         <p class="desc"><b><?php echo $book['author']; ?></b></p>
+                                        <p class="desc"><b><?php echo $book['title'];?></b></p>
                                         <p class="desc">R<?php echo $book['price']; ?></p>
-                                        <button class="add_button" name="addToCart">Add to cart</button>
+                                        <input type="number" min="1" max="1" name="quantity" value="1" style="text-align: center;">
+                                        <button class="add_button"><a href="cart-page.php?itemId='<?php echo $book['bookId'];?>'" 
+                                        class="text-light" style="text-decoration:none;">Add to cart</a>
+                                        </button>
+                                    </form>
                                     </div>
                                 </td>
 
@@ -73,6 +74,7 @@ of usage -->
                 </table>
             </center>
         </div>  
+        <br><br>
     <?php include 'footer.php'; ?>
 </body>
 </html>

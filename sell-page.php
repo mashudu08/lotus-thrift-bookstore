@@ -34,7 +34,9 @@ Accessed: 25 May 2022
                 
             if ($sell_request) 
             {
-                $message[] = "book uploaded successfully!";
+                echo "<script>
+                alert('Book request submitted successfully!');
+           </script>" ; "";
             } else 
             {
                 echo "Failed to upload book!";
@@ -62,21 +64,22 @@ Accessed: 25 May 2022
      <!-- contact form styling using Bootstrap -->
     <h2 style="text-align:center;" class="header-title">Upload book</h2>
     <p style="text-align:center;">Upload books you want to sell</p><br>
-    <section class="sell-books">
-        <form class="form" action="" method="post">
-            <label>Author</label>
-            <input type="text" class="text-input" name="author" placeholder="Author" required/> <br><br>
-            <label>Title</label>
+<section class="sell-books">
+        <form class="form" action="" enctype="multipart/form-data" method="post">
+          <label>Author</label>
+           <input type="text" class="text-input" name="author" placeholder="Author" required/> <br><br>
+         <label>Title</label>
             <input type="text" class="text-input" name="title" placeholder="Title" required/><br><br>
-            <label>Price</label>
+          <label>Price</label>
             <input type="text" class="text-input" name="price" placeholder="Price" required/><br><br>
-            <label>Image</label>
+         <label>Image</label>
             <input type="file" name="image" accept="image/jpg, image/jpeg, image/png" class="box" required><br><br>
-            <label>Description</label> <br><br>
+         <label>Description</label> <br><br>
             <textarea class="text-input" name="description" placeholder="Book description" cols="70" rows="10" required></textarea><br><br>
-            <input type="submit" class="btn-button" name="sell-request" value="Submit Request" />
+            <input type="submit" class="btn-button" name="sell-request" value="Submit Request" style="font-size: 12px ;" />
         </form>
     </section>
+    <br><br>
     <?php include 'footer.php'; ?>
 </body>
 </html>
