@@ -1,14 +1,14 @@
-
-
 .container
 {
     background-color: #243452;
+    width: 100%;
     color: white;
     text-align: center;
     position: relative;
-    border-radius: 0px 0px 0px 0px;
-    margin-left: 75px;
-    margin-right: 75px;
+    padding-bottom: 10px;
+    /* border-radius: 0px 0px 0px 0px; */
+    /* margin-left: 75px;
+    margin-right: 75px; */
 }
 
 .divider
@@ -16,7 +16,7 @@
     margin-top: 40px;
     position: relative;
     align-content: center;
-    background-color: #30405e;
+    /* background-color: #30405e; */
     color: white;
     text-align: center;
     
@@ -26,17 +26,27 @@
 {
     margin-top: 5px;
     margin-bottom: 5px;
-    width: 150px;
+    width: 140px;
     display: inline-block;
     text-decoration: none;
     size: 25px;
-    color: #FFFFFF;
-    border: 1px solid #FFFFFF;
-    padding: 10px 10px 10px 10px;
-    font-size: 20px;
+    color: #f1f0f0;
+    border: 1px solid #f1f0f0;
+    /* padding: 10px 10px 10px 10px; */
+    border-radius: 30px;
+    font-size: 18px;
     background-color: transparent;
     cursor: pointer;
 }
+.contain_button a{
+    color: #f1f0f0;
+}
+.contain_button:hover
+{
+    transform: scale(1.09);
+    border: 2px solid #cccaca;
+}
+
 
 .latest
 {
@@ -69,7 +79,7 @@
     border: 1px solid;
     outline: none;
     margin-top: 5px;
-    margin-left: 90px;
+    margin-left: 70px;
     margin-bottom: 5px;
     width: 150px;
     text-decoration: none;
@@ -79,13 +89,14 @@
     font-size: 12px;
     cursor: pointer;
     transition: 0.20px;
+    border-radius: 30px;
 }
 
 .add_button:hover
 {
-    background-color: #1b942f;
+    background-color: #0877aa;
 }
-
+ 
 .bookImg
 {
     width: 300px;
