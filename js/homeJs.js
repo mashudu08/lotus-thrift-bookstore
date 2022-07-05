@@ -3,15 +3,15 @@
 let previewContainer = document.querySelector('.books-preview');
 let previewBlock =document.querySelectorAll('.preview');
 
-document.querySelectorAll('.books').forEach(b =>{
-    b.onclick = () =>{
+document.querySelectorAll('.books').forEach(book =>{
+    book.onclick = () =>{
         previewContainer.style.display = 'flex';
         let name = b.getAttribute('data-name');
-        previewBlock.forEach(p =>{
+        previewBlock.forEach(preview =>{
             let target = p.getAttribute('data-target');
             if(name == target)
             {
-                p.classList.add(' active');
+                preview.classList.add('active');
             }
         });
     };
@@ -20,7 +20,7 @@ document.querySelectorAll('.books').forEach(b =>{
 //closing book preview.
 previewBlock.forEach(close =>{
     close.querySelector('.fa-times').onclick = () =>{
-        close.classList.remove(' active');
+        close.classList.remove('active');
         previewContainer.style.display = 'none';
     };
 });

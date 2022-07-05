@@ -129,6 +129,11 @@ a{
     height: 30px;
 }
 
+.btn-button:hover
+{
+    background-color: #0877AA;
+}
+
 /* CONTACT FORM */
 .contact {
     margin-left: 30%;

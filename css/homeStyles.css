@@ -41,9 +41,12 @@
 .contain_button a{
     color: #f1f0f0;
 }
+.contain_button a:hover{
+    color: #cccaca;
+}
 .contain_button:hover
 {
-    transform: scale(1.09);
+    transform: scale(1.05);
     border: 2px solid #cccaca;
 }
 
@@ -148,7 +151,7 @@
 
 .books-preview .preview .fa-times:hover
 {
-    transform: rotate(180deg);
+    transform: scale(1.09);
 }
 
 .books-preview .preview h3

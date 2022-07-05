@@ -89,7 +89,7 @@ echo 'Welcome back '. $username;
                                     <?php echo '<img src="data:img/jpg;charset=utf8;base64, '. base64_encode($book['image']) .'" width="280px" height="330px" />'?>
                                         <p class="desc"><b><?php echo $book['author']; ?></b></p>
                                         <p class="desc">R<?php echo $book['price']; ?></p>
-                                        <button class="add_button" name="addToCart">Add to cart</button>
+                                        <a href="cart-page.php"><button class="add_button" name="addToCart">Add to cart</button></a>
                                     </div>
                                 </td>
                                 <?php $num++ ?>
@@ -98,7 +98,7 @@ echo 'Welcome back '. $username;
                                 <?php if ($index == 2) {
                                     ?> 
                                     </tr>
-                                     <?php   
+                                    <?php   
                                 }
                                 ?>
 
@@ -116,16 +116,26 @@ echo 'Welcome back '. $username;
 
             <script src="js/homeJs.js" defer></script>
 
+            <?php 
+                include 'db-connect.php'; // Get db instance
+                $books = array(); // Array  to hold all books read from db
+
+                $books = mysqli_query($dbconnect, "SELECT * FROM `books` LIMIT 6"); // Query to db for getting all books
+
+                $books_arr = mysqli_fetch_all($books, MYSQLI_ASSOC); // Convert all read bbooks into assocc array
+            ?>
+  
+            <!-- Code to preview books.-->
             <div class="books-preview">
 
-                <div class="preview" data-target="book1">
+                <div class="preview active" data-target="book1">
                     <i class="fas fa-times"></i>
                     <img src="img/thumbnail/books22.jpg">
                     <h3>P. Hoffman</h3>
                     <p>Music Theory for Beginners</P>
                     <div class="price">R450.00</div>
                     <div class="buttons">
-                        <a href="#" class="addBook">Add to Cart</a>
+                        <a href="cart-page.php" class="addBook">Add to Cart</a>
                     </div>
                 </div>
 
@@ -136,7 +146,7 @@ echo 'Welcome back '. $username;
                     <p>The basics of filmmaking</P>
                     <div class="price">R620.58</div>
                     <div class="buttons">
-                        <a href="#" class="addBook">Add to Cart</a>
+                        <a href="cart-page.php" class="addBook">Add to Cart</a>
                     </div>
                 </div>
 
@@ -147,7 +157,7 @@ echo 'Welcome back '. $username;
                     <p>Social Media Communications</P>
                     <div class="price">R225.90</div>
                     <div class="buttons">
-                        <a href="#" class="addBook">Add to Cart</a>
+                        <a href="cart-page.php" class="addBook">Add to Cart</a>
                     </div>
                 </div>
 
@@ -183,9 +193,8 @@ echo 'Welcome back '. $username;
                         <a href="#" class="addBook">Add to Cart</a>
                     </div>
                 </div>
-
-            </div>
+                
+            </div>-->
         <?php include 'footer.php'; ?>
     </body>
 </html>
-<script src="js/homeJs.js"></script>
