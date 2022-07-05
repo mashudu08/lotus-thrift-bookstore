@@ -22,20 +22,13 @@ of usage -->
                         $_SESSION['password'] = $row['password'];
                         $isVerified =  $row['isVerified'];
                         if ($isVerified == 1) {
-                        //    echo '<script>
-                        //          alert("Welcome back ". $username. "!")
-                        //          </script>';
-                        //     echo '<script>';
-                        //     echo 'alert("Welcome". $username)';
-                        //    echo '</script>';
                             header('location:home-page.php');
                         } else {
-                            echo 'Waiting to be verified';
+                            echo "Waiting to be verified";
                         }
                     }                        
                   }else{
-
-                    echo 'Waiting to be verified';
+                    echo "Waiting to be verified";
                   }       
                 
         }
@@ -59,9 +52,9 @@ of usage -->
     <form class="form" action="login-page.php" method="post">
         <h1 class="login-title">Login</h1>
         <label>Username</label>
-        <input type="text" class="login-input" name="username" placeholder="username" required/> <br><br>
+        <input type="text" class="login-input" name="username" required/> <br><br>
         <label>Password</label>
-        <input type="password" class="login-input" name="password" placeholder="password" required/><br><br>
+        <input type="password" class="login-input" name="password" required/><br><br>
         <input type="submit" class="login-button" name="Login" value="Login" />
         <p class="link">Don't have an account?  <a href="register-page.php" style="color: #fff;" >  Register</a></p>
     </form>

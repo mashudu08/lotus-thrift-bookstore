@@ -5,7 +5,9 @@ if(isset($_GET['deleteBookId'])){
 
     $delete_user = mysqli_query($dbconnect, "DELETE FROM `books` WHERE bookId = $bookId");
     if($delete_user){
-        echo "Deleted successfully";
+        echo "<script> 
+        alert('Book deleted successfully!')
+        </script>";
     //   header('location:admin-page.php');
     }
     else{

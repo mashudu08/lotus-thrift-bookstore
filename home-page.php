@@ -10,7 +10,9 @@ TextbookTrader. 2022. [Online]. Available on: https://textbooktrader.co.za/
 <?php 
 session_start(); 
 $username = $_SESSION['username'];
-echo 'Welcome back '. $username;
+    echo "<script>
+          alert('Welcome back ');
+     </script>" ;
 include 'header.php';
 ?>
 
@@ -83,8 +85,9 @@ include 'header.php';
                                     <div class="books">
                                     <?php echo '<img src="data:img/jpg;charset=utf8;base64, '. base64_encode($book['image']) .'" width="280px" height="330px" />'?>
                                         <p class="desc"><b><?php echo $book['author']; ?></b></p>
+                                        <p class="desc"><b><?php echo $book['title'];?></b></p>
                                         <p class="desc">R<?php echo $book['price']; ?></p>
-                                        <button class="add_button" name="addToCart">Add to cart</button>
+                                        <button class="add_button" name="addToCart"><a href="manageCart.php?cartItemId='<?php echo $book['bookId']; ?>'">Add to cart</a></button>
                                     </div>
                                 </td>
 

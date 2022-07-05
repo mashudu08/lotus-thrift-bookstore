@@ -34,7 +34,9 @@ Accessed: 25 May 2022
                 
             if ($sell_request) 
             {
-                $message[] = "book uploaded successfully!";
+                echo "<script>
+                alert('Book request submitted successfully!');
+           </script>" ; "";
             } else 
             {
                 echo "Failed to upload book!";
