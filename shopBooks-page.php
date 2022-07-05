@@ -74,6 +74,7 @@ of usage -->
                 </table>
             </center>
         </div>  
+        <br><br>
     <?php include 'footer.php'; ?>
 </body>
 </html>

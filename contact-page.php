@@ -15,7 +15,7 @@ Accessed: 25 May 2022
      session_start();
 
     if(isset($_POST['send'])){
-        $name =mysqli_real_escape_string($dbconnect, $_POST['name']);
+        $name = mysqli_real_escape_string($dbconnect, $_POST['name']);
         $email = mysqli_real_escape_string($dbconnect,$_POST['email']);
         $msg =  mysqli_real_escape_string($dbconnect,$_POST['message']);
         $user_id = $_SESSION['userId'];

@@ -225,6 +225,7 @@ Available on: https://www.codexworld.com/store-retrieve-image-from-database-mysq
       <th scope="col">Book ID</th>
       <th scope="col">Author</th>
       <th scope="col">Title</th>
+      <th scope="col">Description</th>
       <th scope="col">Price</th>
       <th scope="col">Image</th>
       <th scope="col">Edit</th>    
@@ -243,6 +244,7 @@ Available on: https://www.codexworld.com/store-retrieve-image-from-database-mysq
          <td> <?php echo $fetch_users['bookId']; ?></td>
          <td> <?php echo $fetch_users['author']; ?></td>
          <td> <?php echo $fetch_users['title']; ?></td>
+         <td> <?php echo $fetch_users['description']; ?></td>
          <td> <?php echo $fetch_users['price']; ?></td>
          <!-- retrieving image from database (CodeXWorld. 2021) -->
          <td> <?php echo '<img src="data:img/jpg;charset=utf8;base64, '. base64_encode($fetch_users['image']) .'" width="100px" height="150px" />'?>
