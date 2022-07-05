@@ -17,6 +17,7 @@ of usage -->
            
                     $_SESSION['username'] = $row['username'];
                     $_SESSION['userId'] = $row['userId'];
+                    $_SESSION['isRefreshed'] = false;
                     // checking if user is verfied
                     if (password_verify($pass ,$row['password'])) {
                         $_SESSION['password'] = $row['password'];
