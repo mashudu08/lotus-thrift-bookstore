@@ -34,7 +34,9 @@ session_start();
               $update_book = mysqli_query($dbconnect, "UPDATE `books` SET author='$author',title='$title', price=$price, image='$imgContent', description='$description'");
               
               if ($update_book) {
-                echo "Updated successfully!";
+                echo "<script>
+                 alert('Book updated successfully!')
+                </script>";
                 header('location:admin-page.php');
             }
              else{

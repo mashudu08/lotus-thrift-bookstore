@@ -23,7 +23,9 @@ Accessed: 25 May 2022
      $message = mysqli_query($dbconnect, "INSERT INTO `contact`(userId, name, email, message) VALUES( '$user_id','$name', '$email', '$msg')");
 
      if($message){
-        echo "message sent successfully";
+        echo "<script>
+          alert('Message sent successfully');
+     </script>" ;
      }
      else{
         die(mysqli_error($dbconnect));

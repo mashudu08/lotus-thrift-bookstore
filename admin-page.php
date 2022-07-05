@@ -189,9 +189,13 @@ Available on: https://www.codexworld.com/store-retrieve-image-from-database-mysq
               VALUES('$author','$title', '$price', '$imgContent', '$description')") or die('query failed');
               
               if ($insert_book) {
-                echo "Book uploaded successfully!";
+                echo "<script> 
+                alert('Book uploaded successfully!')
+                </script>";
             } else {
-                echo "Failed to upload book!";
+                echo "<script>
+                alert('Failed to upload book!')
+                </script>";
             }
              }
 
