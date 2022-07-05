@@ -19,6 +19,7 @@ of usage -->
 </head>
 <body>
     <?php include 'header.php'; ?>
+    <style><?php include "css/cartStyles.css";?></style>
     
     <section class="cart">
         <h1 class="title">Your Cart</h1>

@@ -17,12 +17,14 @@ TextbookTrader. 2022. [Online]. Available on: https://textbooktrader.co.za/
     <style><?php include "css/style.css"; ?> </style>
     <!-- font awesome link -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.1.1/css/all.css">
+    <!-- custom js file link -->
+    <script src="js/homeJs.js" defer></script>
     <title>Lotus Thrift Bookstore</title>
 </head>
     <body>
         <?php include 'header.php'; ?>
             <style><?php include "css/homeStyles.css";?></style>
-            <script src="js/homeJs.js"></script>
+            <script src="js/homeJs.js" defer></script>
 
             <div class="container">
                 <h2><u>How it works</u></h2>
@@ -54,34 +56,34 @@ TextbookTrader. 2022. [Online]. Available on: https://textbooktrader.co.za/
                     <caption><h1>Latest Arrival</h1></caption>
                     <tr>
                         <td>
-                            <div class="books">
-                                <a href="viewBook-page.php" onclick="viewBook(item1)"><img src="img/thumbnail/books22.jpg"></a>
+                            <div class="books" data-name="book1">
+                                <img src="img/thumbnail/books22.jpg"></a>
                                 <p class="desc"><b>Music Theory for Beginners by P. Hoffman</b></p>
                                 <p>R450.80</p>
                                 <button class="add_button" name="addToCart">Add to cart</button>
                             </div>
                         </td>
                         <td>
-                            <div class="books">
-                            <a href="viewBook-page.php"><img onclick="viewBook(item1)" src="img/thumbnail/books23.jpg"></a>
+                            <div class="books" data-name="book2">
+                                <img src="img/thumbnail/books23.jpg"></a>
                                 <p class="desc"><b>The basics of filmmaking by B. Brown</b></p>
                                 <p>R620.58</p>
                                 <button class="add_button" name="addToCart">Add to cart</button>
                             </div>
                         </td>
                         <td>
-                            <div class="books">
+                            <div class="books" data-name="book3">
                                 <img src="img/thumbnail/books24.jpg">
                                 <p class="desc"><b>Social Media Communications by B. Zhong</b></p>
                                 <p>R225.90</p>
-                                <button onclick="addToCart(item1)" class="add_button" name="addToCart">Add to cart</button>
+                                <button onclick="addToCart(book3)" class="add_button" name="addToCart">Add to cart</button>
                             </div>
                         </td>
                     </tr>
 
                     <tr>
                         <td>
-                            <div class="books">
+                            <div class="books" data-name="book4">
                                 <img src="img/thumbnail/novel4.jfif">
                                 <p class="desc"><b>Born A Crime by T. Noah</b></p>
                                 <p>R120.00</p>
@@ -89,7 +91,7 @@ TextbookTrader. 2022. [Online]. Available on: https://textbooktrader.co.za/
                             </div>
                         </td>
                         <td>
-                            <div class="books">
+                            <div class="books" data-name="book5">
                                 <img src="img/thumbnail/books26.jpg">
                                 <p class="desc"><b>Hustle Harder, Hustle Smarter by C. Jackson</b></p>
                                 <p>R320.00</p>
@@ -97,9 +99,9 @@ TextbookTrader. 2022. [Online]. Available on: https://textbooktrader.co.za/
                             </div>
                         </td>
                         <td>
-                            <div class="books">
+                            <div class="books" data-name="book6">
                                 <img src="img/thumbnail/novel6.jpg">
-                                <p class="desc"><b>A South African nightmare RAPE by p. Godla</b></p>
+                                <p class="desc"><b>A South African nightmare RAPE by P. Godla</b></p>
                                 <p>R160.00</p>
                                 <button class="add_button" name="addToCart">Add to cart</button>
                             </div>
@@ -107,21 +109,78 @@ TextbookTrader. 2022. [Online]. Available on: https://textbooktrader.co.za/
                     </tr>
                 </table>
             </center>
+
+            <script src="js/homeJs.js" defer></script>
+
+            <div class="books-preview">
+
+                <div class="preview" data-target="book1">
+                    <i class="fas fa-times"></i>
+                    <img src="img/thumbnail/books22.jpg">
+                    <h3>P. Hoffman</h3>
+                    <p>Music Theory for Beginners</P>
+                    <div class="price">R450.00</div>
+                    <div class="buttons">
+                        <a href="#" class="addBook">Add to Cart</a>
+                    </div>
+                </div>
+
+                <div class="preview" data-target="book2">
+                    <i class="fas fa-times"></i>
+                    <img src="img/thumbnail/books23.jpg">
+                    <h3>B. Brown</h3>
+                    <p>The basics of filmmaking</P>
+                    <div class="price">R620.58</div>
+                    <div class="buttons">
+                        <a href="#" class="addBook">Add to Cart</a>
+                    </div>
+                </div>
+
+                <div class="preview" data-target="book3">
+                    <i class="fas fa-times"></i>
+                    <img src="img/thumbnail/books24.jpg">
+                    <h3>B. Zhong</h3>
+                    <p>Social Media Communications</P>
+                    <div class="price">R225.90</div>
+                    <div class="buttons">
+                        <a href="#" class="addBook">Add to Cart</a>
+                    </div>
+                </div>
+
+                <div class="preview" data-target="book4">
+                    <i class="fas fa-times"></i>
+                    <img src="img/thumbnail/novel4.jfif">
+                    <h3>T. Noah</h3>
+                    <p>Born A Crime</P>
+                    <div class="price">R120.00</div>
+                    <div class="buttons">
+                        <a href="#" class="addBook">Add to Cart</a>
+                    </div>
+                </div>
+
+                <div class="preview" data-target="book5">
+                    <i class="fas fa-times"></i>
+                    <img src="img/thumbnail/books26.jpg">
+                    <h3>C. Jackson</h3>
+                    <p>Hustle Harder, Hustle Smarter</P>
+                    <div class="price">R320.00</div>
+                    <div class="buttons">
+                        <a href="#" class="addBook">Add to Cart</a>
+                    </div>
+                </div>
+
+                <div class="preview" data-target="book6">
+                    <i class="fas fa-times"></i>
+                    <img src="img/thumbnail/novel6.jpg">
+                    <h3>P. Godla</h3>
+                    <p>A South African nightmare RAPE</P>
+                    <div class="price">R160.00</div>
+                    <div class="buttons">
+                        <a href="#" class="addBook">Add to Cart</a>
+                    </div>
+                </div>
+
+            </div>
         <?php include 'footer.php'; ?>
     </body>
 </html>
-
-
-<script type="text/javascript">
-    var noti = document.querySelector('fa-cart-shopping');
-    var books = document.querySelector('books');
-    var button = document.querySelector('button');
-
-    for(but of button)
-    {
-        but.addEventListener('click', (e)=>{var add = Number(noti.getAttribute('data-count') || 0);
-        noti.setAttribute('data-count', add + 1);
-        noti.classList.add('zero');
-        })
-    }
-</script>

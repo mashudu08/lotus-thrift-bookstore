@@ -30,49 +30,49 @@ of usage -->
 
                         $books_arr = mysqli_fetch_all($books, MYSQLI_ASSOC); // Convert all read bbooks into assocc array
 
-                        ?>
+                    ?>
 
-                        <?php 
-                        $index = 0; // Flag used to create table rows
-                        foreach ($books_arr as $book) : // Foreach used to cycle through array
-                            // This if statement creates the initial table row
-                                if ($index == 0) { 
-                                    ?> 
-                                    <tr>
-                                    <?php    
-                                }
-                                ?>
-                                
-                                 <!-- Display the book details -->
-                                <td>
-                                    <div class="books">
-                                    <?php echo '<img src="data:img/jpg;charset=utf8;base64, '. base64_encode($book['image']) .'" width="300px" height="350px" />'?>
-                                        <p class="desc"><b><?php echo $book['author']; ?></b></p>
-                                        <p class="desc">R<?php echo $book['price']; ?></p>
-                                        <button class="add_button" name="addToCart">Add to cart</button>
-                                    </div>
-                                </td>
+                    <?php 
+                    $index = 0; // Flag used to create table rows
+                    foreach ($books_arr as $book) : // Foreach used to cycle through array
+                        // This if statement creates the initial table row
+                            if ($index == 0) { 
+                                ?> 
+                                <tr>
+                                <?php    
+                            }
+                            ?>
+                            
+                                <!-- Display the book details -->
+                            <td>
+                                <div class="books">
+                                <?php echo '<img src="data:img/jpg;charset=utf8;base64, '. base64_encode($book['image']) .'" width="300px" height="350px" />'?>
+                                    <p class="desc"><b><?php echo $book['author']; ?></b></p>
+                                    <p class="desc">R<?php echo $book['price']; ?></p>
+                                    <button class="add_button" name="addToCart">Add to cart</button>
+                                </div>
+                            </td>
 
-                                <!-- This condition  create the closing table row if three books have already been displayed -->
-                                <?php if ($index == 2) {
-                                    ?> 
-                                    </tr>
-                                     <?php   
-                                }
-                                ?>
+                            <!-- This condition  create the closing table row if three books have already been displayed -->
+                            <?php if ($index == 2) {
+                                ?> 
+                                </tr>
+                                    <?php   
+                            }
+                            ?>
 
-                                <?php if ($index == 2) {
-                                    $index = 0; // Set the flag back to initial state   
-                                } 
-                                
-                                else {
-                                    $index++; // Increment flag
-                                }
-                        endforeach // End foreach
-                        ?>
+                            <?php if ($index == 2) {
+                                $index = 0; // Set the flag back to initial state   
+                            } 
+                            
+                            else {
+                                $index++; // Increment flag
+                            }
+                    endforeach // End foreach
+                    ?>
                          
 
-                        <!-- <td>
+                   <!-- <td>
                             <div class="books">
                                 <img src="img/thumbnail/books3.jpg">
                                 <p class="desc"><b>Information Technology Essentails</b></p>
