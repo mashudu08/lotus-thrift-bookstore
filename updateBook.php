@@ -17,8 +17,8 @@ session_start();
         $author = $row['author'];
         $title =$row['title'];
         $price = $row['price'];
-        // $imgContent = base64_encode($row['image']);
-        $imgContent ='<img src="data:img/jpg;charset=utf8;base64,'.base64_encode($row['image']).'" width="100px" height="150px"/>';
+        $imgContent = base64_encode($row['image']);
+        // $imgContent ='<img src="data:img/jpg;charset=utf8;base64,'.base64_encode($row['image']).'" width="100px" height="150px"/>';
         $description = $row['description']; 
         // Storing image in from database (CodeXWorld. 2021)
                 if(isset($_POST['submit'])){
@@ -83,7 +83,7 @@ session_start();
       <input type="file" name="image" accept="image/jpg, image/jpeg, image/png" class="box" value="<?php echo $imgContent;?>"><br><br>
       <label>Description</label> <br>
       <textarea class="text-input" name="description" placeholder="Enter book description" cols="60" rows="5" value="<?php echo $description;?>"></textarea><br><br>
-      <input type="submit" value="add book" name="add-book" class="btn-button">
+      <input type="submit" value="add book" name="add-book" class="btn-button" href="admin-page.php">
       
    </form>
       </div>
