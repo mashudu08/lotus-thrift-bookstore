@@ -86,14 +86,11 @@ $username = @$_SESSION['username'];
                                  <!-- Display the book details -->
                                 <td>
                                     <div class="books">
-                                    <form method="post" action="" >
                                     <?php echo '<img src="data:img/jpg;charset=utf8;base64, '. base64_encode($book['image']) .'" width="280px" height="330px" />'?>
                                         <p class="desc"><b><?php echo $book['author']; ?></b></p>
                                         <p class="desc"><b><?php echo $book['title'];?></b></p>
                                         <p class="desc">R<?php echo $book['price']; ?></p>
-                                        <input type="number" min="1" max="1" name="quantity" value="1" style="text-align: center;">
                                         <button class="add_button" name="addToCart"><a href="manageCart.php?cartItemId='<?php echo $book['bookId']; ?>'">Add to cart</a></button>
-                                    </form>
                                     </div>
                                 </td>
                                 <?php $num++ ?>
