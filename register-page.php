@@ -57,9 +57,10 @@ GeeksforGeeks. 31 July 2021. [Online]. How to encrypt and decrypt passwords usin
         // echo $dbResult;
 
         if ($dbResult === FALSE) {
-          echo "Error inserting into the database: ". mysqli_connect_error();
+          echo "<script> alert('Error inserting into the database: ' mysqli_connect_error()');
+          </script>";
         } else { 
-          $_SESSION['message'] = "User created successfully. Please wait for registration approval.";
+          echo "<script> alert('User created successfully!'); </script>";
           $_SESSION['msg_type'] = "success";
           header('location:login-page.php');
         }

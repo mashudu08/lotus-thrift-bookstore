@@ -7,13 +7,20 @@ References
 ------------------
 TextbookTrader. 2022. [Online]. Available on: https://textbooktrader.co.za/
 -->
-<?php include 'header.php'; ?>
 <?php 
- include 'db-connect.php';
+include 'db-connect.php';
 session_start(); 
-$username = @$_SESSION['username'];
-    echo "Welcome " .$username; 
-?>
+    $username = $_SESSION['username'];
+    $refreshed = $_SESSION['isRefreshed'];
+    if (!$refreshed) {
+        echo "<script>
+              alert('Welcome back $username');
+         </script>" ;
+
+         $_SESSION['isRefreshed'] = true;
+    }
+include 'header.php'; ?>
+
 
 <!DOCTYPE html>
 <html lang="en">

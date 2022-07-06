@@ -12,7 +12,7 @@ if(isset($_POST['submit'])){
     $suburb = mysqli_real_escape_string($dbconnect, $_POST['suburb']);
     $city = mysqli_real_escape_string($dbconnect, $_POST['city']);
     $province = mysqli_real_escape_string($dbconnect, $_POST['province']);
-    $postalcode = mysqli_real_escape_string($dbconnect, $_POST['postal_code']);
+    $postalcode = $_POST['postal_code'];
     $user_id = $_SESSION['userId'];
 
     $delivery_details =  mysqli_query($dbconnect, "INSERT INTO `delivery_details` (userId, address1, address2, suburb, city, province, postal_code)
@@ -21,13 +21,9 @@ if(isset($_POST['submit'])){
     if($delivery_details){
     echo 
     "<script>
-      alert(
-      ". $select_delivery = mysqli_query($dbconnect, "SELECT * FROM `delivery_details`");
-      while($fetch_order = mysqli_fetch_assoc($select_delivery)){
-        echo $fetch_order['address1'] .' <br> '. $fetch_order['address2'] .'<br> '. $fetch_order['suburb'] .'<br> '. $fetch_order['city']
-        .' <br> '. $fetch_order['province'] .'<br> '. $fetch_order['postal_code'];
-      }");
+      alert('Order has been placed!);
      </script>";
+     
      header('location:login-page.php');
     }
     else{

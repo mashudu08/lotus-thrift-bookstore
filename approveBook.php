@@ -6,7 +6,7 @@ if(isset($_GET['approveBookId'])){
     $approveBook = mysqli_query($dbconnect, "UPDATE `sell` SET requestApproved = true WHERE requestApproved = false");
     if($approveBook){
         echo "<script> 
-              alert('Request approved!')
+              alert('Request approved!');
               </script>";
       header('location:admin-page.php');
     }
