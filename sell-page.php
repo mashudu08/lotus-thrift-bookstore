@@ -56,7 +56,7 @@ Accessed: 25 May 2022
 
 <?php include 'header.php'; ?>
      <!-- contact form styling using Bootstrap -->
-     <h2 style="text-align:center;" class="header-title">Upload book</h2>
+    <h2 style="text-align:center;" class="header-title">Upload book</h2>
     <p style="text-align:center;">Upload books you want to sell</p><br>
 <section class="sell-books">
     <form class="form" action="" enctype="multipart/form-data" method="post">

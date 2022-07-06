@@ -53,32 +53,33 @@ if(isset($_POST['submit'])){
         <?php include 'header.php'; ?> 
         <h2 style="text-align:center;" class="header-title" >Delivery Details</h2>
 
-<div class="checkout">
+    <div class="checkout">
+
         <form class="align-items-center mt-5" method="post">
-  <div class="form-row" >
-    <label for="address1">Address</label>
-    <input type="text" class="form-control" name="address1" placeholder="1234 Main St"><br>
+          <div class="form-row" >
+            <label for="address1">Address</label>
+            <input type="text" class="form-control" name="address1" placeholder="1234 Main St"><br>
 
-    <label for="address2">Address 2</label>
-    <input type="text" class="form-control" name="address2" placeholder="Apartment, studio, or floor"><br>
+            <label for="address2">Address 2</label>
+            <input type="text" class="form-control" name="address2" placeholder="Apartment, studio, or floor"><br>
 
-      <label for="suburb">Suburb</label>
-      <input type="text" class="form-control" name="suburb"><br>
-  
-      <label for="city">City</label>
-      <input type="text" class="form-control" name="city"><br>
+            <label for="suburb">Suburb</label>
+            <input type="text" class="form-control" name="suburb"><br>
+        
+            <label for="city">City</label>
+            <input type="text" class="form-control" name="city"><br>
 
-      <label for="province">Province</label>
-      <select name="province" class="form-control">
-        <option selected>Gauteng</option>
-      </select>
-    <br>
-      <label for="postal_code">Postal Code</label>
-      <input type="text" class="form-control" name="postal_code">
-</div><br>
-  <button type="submit" name="submit" class="btn-button mb-5 w-5">Place Order</button>
-</form>
-</div>        
+            <label for="province">Province</label>
+            <select name="province" class="form-control">
+              <option selected>Gauteng</option>
+            </select>
+            <br>
+            <label for="postal_code">Postal Code</label>
+            <input type="text" class="form-control" name="postal_code">
+          </div><br>
+          <button type="submit" name="submit" class="btn-button mb-5 w-5">Place Order</button>
+        </form>
+    </div>        
 <?php include 'footer.php'; ?>
 </body>
 </html>

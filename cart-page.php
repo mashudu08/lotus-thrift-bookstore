@@ -45,7 +45,7 @@ $user_id =$_SESSION['userId'];
     $total = 0;
     $cart = mysqli_query($dbconnect, "SELECT * FROM `cart` WHERE userId = '$user_id'");
 
-    if(mysqli_num_rows($cart) > 0){
+  if(mysqli_num_rows($cart) > 0){
     while($fetch_cart = mysqli_fetch_assoc($cart)){
     ?>
     <tr>
@@ -65,7 +65,7 @@ $user_id =$_SESSION['userId'];
       ?>   
    <?php 
     }
-  }
+    }
     else{
       echo '<tr><td style="padding:20px; text-transform:capitalize;" colspan="6">no item added</td></tr>';
     }
@@ -74,13 +74,12 @@ $user_id =$_SESSION['userId'];
 </table>
   <?php echo 'Grand Total:  R'. $total?>
  <br>
- <button class="btn-button" style="margin: 50px 5px;" ><a href="checkout-page.php" 
- style="text-decoration:none; color: #000; ">Checkout</a></button>&NonBreakingSpace;
+ <button class="btn-cartbutton" style="margin: 50px 5px;" ><a href="checkout-page.php" 
+ style="text-decoration:none; color: #fff; ">Checkout</a></button>&NonBreakingSpace;
 
- <button  style="color: black; border: 2px solid #1B263B; padding: 5px 15px;
-    border-radius: 25px; background-color:#fff; align-items: center;
-    font-size: 13px;">
-            <a href="shopBooks-page.php" style="text-decoration:none; color: #000; ">Continue Shopping</a></button>
+ <button  class="btn-shopping">
+            <a href="shopBooks-page.php" style="text-decoration:none;">Continue Shopping</a></button>
  </div>
+ <?php include 'footer.php'; ?>
 </body>
 </html>

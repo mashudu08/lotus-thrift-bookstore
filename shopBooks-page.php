@@ -78,13 +78,13 @@ of usage -->
                                     </div>
                                 </td>
 
-                                <!-- This condition  create the closing table row if three books have already been displayed -->
-                                <?php if ($index == 2) {
-                                    ?> 
-                                    </tr>
-                                     <?php   
-                                }
-                                ?>
+                            <!-- This condition  create the closing table row if three books have already been displayed -->
+                            <?php if ($index == 2) {
+                                ?> 
+                                </tr>
+                                    <?php   
+                            }
+                            ?>
 
                                 <?php if ($index == 2) {
                                     $index = 0; // Set the flag back to initial state   

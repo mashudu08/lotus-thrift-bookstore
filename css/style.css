@@ -57,33 +57,41 @@ a{
     height: 30px;
 }
 
+.fa-cart-shopping.zero::before
+{
+    opacity: 1;
+}
+
 /*SELL PAGE*/
 .sell-books {
     margin-left: 30%;
-   margin-bottom: 8px;
-   border-radius: 5px;
-   background-color: #f2f2f2;
-   padding: 10px 50px ;
-   width: 500px;
+    margin-bottom: 8px;
+    border-radius: 5px;
+    background-color: #f2f2f2;
+    padding: 10px 50px ;
+    width: 500px;
 }
 
 .sell-books form {
     display: inline-block;
 }
 
+
 /* HEAD */
-.btn-button
+.btn-reqbutton
 {
-    width: 190px;
+    width: 250px;
     border: 1px;
     border-radius: 15px;
+    background-color: #1B263B;
+    color: #ffffff;
     size: 18px;
     font-size: 15px;
     cursor: pointer;
     transition: 0.20px;
 }
 
-.btn-button:hover
+.btn-reqbutton:hover
 {
     color: #ffffff;
     background-color: #0877AA;
@@ -119,6 +127,11 @@ a{
     border-radius: 30px;
     width: 120px;
     height: 32px;
+}
+
+.btn-button:hover
+{
+    background-color: #0877AA;
 }
 
 /* CONTACT FORM */
@@ -191,6 +204,24 @@ a{
     resize: vertical 
   }
 
+  .btn-checkbutton
+  {
+    width: 250px;
+    border: 1px solid #ccc;
+    cursor: pointer;
+    margin-top: 10px;
+    color: #ffffff;
+    background-color: #1B263B;
+    border-radius: 30px;
+    font-size: 15px;
+  }
+
+  .btn-checkbutton:hover
+  {
+    transform: scale(1.0.1);
+    background-color: #0877AA;
+  }
+
 /* FOOTER */
 .footer{
     background-color: var(--footer-bg-color);
@@ -206,4 +237,48 @@ a{
      padding: 10px 10px;
      margin-top: 50px;
  }
+
+ /*Cart Button*/
+ .btn-cartbutton
+ {
+    width: 150px;
+    height: 35px;
+    border: 1px solid #ccc;
+    cursor: pointer;
+    margin-top: 10px;
+    color: #ffffff;
+    background-color: #1B263B;
+    border-radius: 30px;
+    font-size: 15px;
+ }
+
+.btn-cartbutton:hover
+{
+    transform: scale(1.0.1);
+    background-color: #0877AA;
+}
+
+.btn-shopping
+{
+    color: #1B263B;
+    border: 1px solid #1B263B;
+    padding: 5px 15px;
+    border-radius: 25px; 
+    background-color:#fff; 
+    align-items: center;
+    font-size: 13px;
+}
+.btn-shopping:hover
+{
+    transform: scale(1.0.1);
+    color: #fff;
+    background-color: #1B263B;
+    
+}
+.btn-shopping a:hover
+{
+    color: #fff;
+    background-color: #1B263B;
+    
+}
 

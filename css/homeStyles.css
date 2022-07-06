@@ -8,6 +8,7 @@ color:#FFFFFF;
     color: white;
     text-align: center;
     position: relative;
+    padding-bottom: 10px;
     /* border-radius: 0px 0px 0px 0px; */
     /* margin-left: 75px;
     margin-right: 75px; */
@@ -32,8 +33,8 @@ color:#FFFFFF;
     display: inline-block;
     text-decoration: none;
     size: 25px;
-    color: #FFFFFF;
-    border: 2px solid #FFFFFF;
+    color: #f1f0f0;
+    border: 1px solid #f1f0f0;
     /* padding: 10px 10px 10px 10px; */
     border-radius: 30px;
     font-size: 18px;
@@ -41,8 +42,17 @@ color:#FFFFFF;
     cursor: pointer;
 }
 .contain_button a{
-        color: white;
+    color: #f1f0f0;
 }
+.contain_button a:hover{
+    color: #cccaca;
+}
+.contain_button:hover
+{
+    transform: scale(1.05);
+    border: 2px solid #cccaca;
+}
+
 
 .latest
 {
@@ -60,6 +70,12 @@ color:#FFFFFF;
     margin-top: 25px;
     margin-bottom: 5px;
 }
+
+.books img:hover
+{
+    transform: scale(1.05);
+}
+
 
 .add_button
 {
@@ -86,8 +102,102 @@ color:#FFFFFF;
 {
     background-color: #0877aa;
 }
-/* 
+ 
 .bookImg
 {
     width: 300px;
-} */
+}
+
+.books-preview
+{
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    background: rgba(0, 0, 0, .7);
+    display: none;
+    align-items: center;
+    justify-content: center;
+}
+
+.books-preview .preview
+{
+    display: none;
+    width: 260px;
+    padding: 50px;
+    text-align: center;
+    background: #ffffff;
+    position: relative;
+    margin: 40px;
+}
+
+.books-preview .preview.active
+{
+    display: inline-block;
+}
+
+.books-preview .preview img
+{
+    height: 350px;
+}
+
+.books-preview .preview .fa-times
+{
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    cursor: pointer;
+    color: #1B263B;
+    font-size: 25px;
+}
+
+.books-preview .preview .fa-times:hover
+{
+    transform: scale(1.09);
+}
+
+.books-preview .preview h3
+{
+    color: #1B263B;
+    padding: 10px 0;
+    font-size: 30px;
+}
+
+.books-preview .preview p
+{
+    color: #464b53;
+    padding: 10px;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+.books-preview .preview .price
+{
+    color: #1B263B;
+    padding: 10px;
+    font-size: 17px;
+}
+
+.books-preview .preview .buttons
+{
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 1px;
+}
+
+.books-preview .preview a
+{
+    flex: 1 1 16rem;
+    padding: 2px;
+    font-size: 18px;
+    color: #1B263B;
+    border: 1px solid #1B263B;
+}
+
+.books-preview .preview a:hover
+{
+    background-color: #1B263B;
+    color: #FFFFFF;
+    border: 1px solid #FFFFFF;
+}
