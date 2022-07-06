@@ -23,8 +23,8 @@ a:hover
                 <a href="sell-page.php">sell</a>
             </nav>
             <div class="icons">
-                <div id="user" class="fa-solid fa-user"></div>
-                <a href="cart-page.php"><i  class="fa-solid fa-cart-shopping" style="color: #000"></i></a>
+            <a href="profile.php"><div id="user" class="fa-solid fa-user"></div></a>
+             <a href="cart-page.php"><i  class="fa-solid fa-cart-shopping" style="color: #000"></i></a>
             </div>
             <button style="color: var(--btn-bg-color);
     border: 2px solid #1B263B; padding: 5px 15px;
