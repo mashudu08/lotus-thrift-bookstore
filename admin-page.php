@@ -91,7 +91,7 @@ session_start();
          while($fetch_order = mysqli_fetch_assoc($select_books)){
         ?>
         Order ID: <?php echo $fetch_order['cartId']; ?><br>
-        User ID: <?php echo $userId ?> <br>
+        User ID: <?php echo $userId; ?> <br>
         Book Details: <br> ------------- <br> <?php echo 'Author: '. $fetch_order['author'] .' <br> '. 'Title: '.$fetch_order['title'] .'<br> '. 'Price: R'.$fetch_order['price'] .'<br> '.'Quantity: '. $fetch_order['quantity']; ?> <br>
         <br>
        Dispatch:  <button class="btn-button"><a href="approveBook.php?approveBookId='<?php echo $fetch_order['cartId']; ?>'" class="text-light" style="text-decoration:none;">Fulfill</a></button>
@@ -223,11 +223,11 @@ session_start();
               
               if ($insert_book) {
                 echo "<script> 
-                alert('Book uploaded successfully!')
+                alert('Book uploaded successfully!');
                 </script>";
             } else {
                 echo "<script>
-                alert('Failed to upload book!')
+                alert('Failed to upload book!');
                 </script>";
             }
              }

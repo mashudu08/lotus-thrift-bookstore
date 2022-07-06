@@ -34,7 +34,7 @@ session_start();
               
               if ($update_book) {
                 echo "<script>
-                 alert('Book updated successfully!')
+                 alert('Book updated successfully!');
                 </script>";
                 header('location:admin-page.php');
             }

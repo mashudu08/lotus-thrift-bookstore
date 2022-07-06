@@ -7,7 +7,7 @@ if(isset($_GET['deleteUserId'])){
     if($delete_user){
        echo 
        "<script>
-       alert('User deleted successfully!')
+       alert('User deleted successfully!');
        </script>";
       header('location:admin-page.php');
     }

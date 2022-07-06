@@ -28,16 +28,14 @@
         ?>
                 Order ID: <?php echo $fetch_order['cartId']; ?><br>
                 User ID: <?php echo $userId;?><br>
-        <h4>Book details</h4>
-                <br><br> 
+        <h4>Book details:</h4>
                 <?php echo 'Author: '. $fetch_order['author'] .' <br> '. 'Title: '.$fetch_order['title'] .'<br> '.
                 'Price: R'.$fetch_order['price'] .'<br> '.'Quantity: '. $fetch_order['quantity']; ?> 
-                <br>
+                <br><br>
          <?php 
             };
          ?>
-        <h4>Delivery details</h4> 
-        <br>
+        <h4>Delivery details:</h4> 
         <?php 
         $select_delivery = mysqli_query($dbconnect, "SELECT * FROM `delivery_details` WHERE userId = '$userId'");
             while($fetch_order = mysqli_fetch_assoc($select_delivery)){
