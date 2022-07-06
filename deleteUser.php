@@ -9,7 +9,7 @@ if(isset($_GET['deleteUserId'])){
        "<script>
        alert('User deleted successfully!')
        </script>";
-      // header('location:admin-page.php');
+      header('location:admin-page.php');
     }
     else{
         die(mysqli_error($dbconnect));

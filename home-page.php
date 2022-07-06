@@ -9,6 +9,7 @@ TextbookTrader. 2022. [Online]. Available on: https://textbooktrader.co.za/
 -->
 <?php include 'header.php'; ?>
 <?php 
+ include 'db-connect.php';
 session_start(); 
 $username = @$_SESSION['username'];
     echo "Welcome " .$username; 
@@ -58,55 +59,42 @@ $username = @$_SESSION['username'];
                 <br>
             </div>
             
-            <center>
-                <table>
-                    <caption><h1>Latest Arrival</h1></caption>
-                        <?php 
-                            include 'db-connect.php'; // Get db instance
-                            $books = array(); // Array  to hold all books read from db
-
-                            $books = mysqli_query($dbconnect, "SELECT * FROM `books` LIMIT 6"); // Query to db for getting all books
-
-                            $books_arr = mysqli_fetch_all($books, MYSQLI_ASSOC); // Convert all read bbooks into assocc array
-
-                        ?>
-
-                        <?php 
-                        $index = 0; // Flag used to create table rows
-                        foreach ($books_arr as $book) : // Foreach used to cycle through array
-                            // This if statement creates the initial table row
-                                $num = 1;
-                                if ($index == 0) { 
-                                    ?> 
-                                    <tr>
-                                    <?php    
-                                }
-                                ?>
-                                
-                                 <!-- Display the book details -->
-                                <td>
-                                    <div class="books">
-                                    <?php echo '<img src="data:img/jpg;charset=utf8;base64, '. base64_encode($book['image']) .'" width="280px" height="330px" />'?>
-                                        <p class="desc"><b><?php echo $book['author']; ?></b></p>
-                                        <p class="desc"><b><?php echo $book['title'];?></b></p>
-                                        <p class="desc">R<?php echo $book['price']; ?></p>
-                                        <button class="add_button" name="addToCart"><a href="manageCart.php?cartItemId='<?php echo $book['bookId']; ?>'">Add to cart</a></button>
+    <center>
+            <table>
+                <caption><h1>Latest Arrival</h1></caption>
+                <?php  
+                    $books = array(); // Array  to hold all books read from db
+                    $books = mysqli_query($dbconnect, "SELECT * FROM `books` LIMIT 6");
+                    $books_arr = mysqli_fetch_all($books, MYSQLI_ASSOC); // Convert all read bbooks into assocc array
+                    ?>
+                    <?php 
+                    $index = 0; // Flag used to create table rows
+                    foreach ($books_arr as $book) : // Foreach used to cycle through array
+                    // This if statement creates the initial table row
+                        if ($index == 0) { 
+                            ?> 
+                             <tr>
+                             <?php    
+                            }
+                             ?>
+                     <!-- Display the book details -->
+                        <td>
+                           <div class="books">
+                                <?php echo '<img src="data:img/jpg;charset=utf8;base64, '. base64_encode($book['image']) .'" width="280px" height="330px" />'?>
+                                    <p class="desc"><b><?php echo $book['author']; ?></b></p>
+                                    <p class="desc"><b><?php echo $book['title'];?></b></p>
+                                    <p class="desc">R<?php echo $book['price']; ?></p>
+                                    <button class="add_button" name="addToCart"><a href="manageCart.php?cartItemId='<?php echo $book['bookId']; ?>'">Add to cart</button></a>
                                     </div>
                                 </td>
-                                <?php $num++ ?>
-
                                 <!-- This condition  create the closing table row if three books have already been displayed -->
                                 <?php if ($index == 2) {
                                     ?> 
-                                    </tr>
-                                    <?php   
-                                }
-                                ?>
-
+                                </tr>
+                                <?php } ?>
                                 <?php if ($index == 2) {
                                     $index = 0; // Set the flag back to initial state   
                                 } 
-                                
                                 else {
                                     $index++; // Increment flag
                                 }
@@ -122,12 +110,12 @@ $username = @$_SESSION['username'];
 
                 <div class="preview active" data-target="book1">
                     <i class="fas fa-times"></i>
-                    <img src="img/thumbnail/books22.jpg">
-                    <h3>P. Hoffman</h3>
-                    <p>Music Theory for Beginners</P>
-                    <div class="price">R450.00</div>
+                    <img src="img/thumbnail/books5.png">
+                    <h3>S. Nakvoc</h3>
+                    <p>Practical Cryptography for Developers</P>
+                    <div class="price">R225.90</div>
                     <div class="buttons">
-                        <a href="cart-page.php" class="addBook">Add to Cart</a>
+                        <a href="manageCart.php?cartItemId='<?php echo $book['bookId']; ?>'">Add to Cart</a>
                     </div>
                 </div>
 
@@ -160,7 +148,7 @@ $username = @$_SESSION['username'];
                     <p>Born A Crime</P>
                     <div class="price">R120.00</div>
                     <div class="buttons">
-                        <a href="#" class="addBook">Add to Cart</a>
+                        <a href="cart-page.php" class="addBook">Add to Cart</a>
                     </div>
                 </div>
 
@@ -171,7 +159,7 @@ $username = @$_SESSION['username'];
                     <p>Hustle Harder, Hustle Smarter</P>
                     <div class="price">R320.00</div>
                     <div class="buttons">
-                        <a href="#" class="addBook">Add to Cart</a>
+                        <a href="cart-page.php" class="addBook">Add to Cart</a>
                     </div>
                 </div>
 
@@ -182,7 +170,7 @@ $username = @$_SESSION['username'];
                     <p>A South African nightmare RAPE</P>
                     <div class="price">R160.00</div>
                     <div class="buttons">
-                        <a href="#" class="addBook">Add to Cart</a>
+                        <a href="cart-page.php" class="addBook">Add to Cart</a>
                     </div>
                 </div>
                 

@@ -2,7 +2,29 @@
      ST10118368 Ledwaba David
 The code is my own work unless stated otherwise as a comment at the point 
 of usage -->
+<?php
+      include 'db-connect.php';  //db connection 
+      session_start();
+      $user_id = $_SESSION['userId'];
+      if(isset($_POST['add_to_cart'])){
+        $bookId = mysqli_real_escape_string($dbconnect, $_POST['bookId']);
+        $author = mysqli_real_escape_string($dbconnect, $_POST['author']);
+        $book_title = mysqli_real_escape_string($dbconnect, $_POST['title']);
+        $book_price =  mysqli_real_escape_string($dbconnect, $_POST['price']);
+        $book_quantity =  mysqli_real_escape_string($dbconnect,$_POST['quantity']);
+    
+        $select_cart = mysqli_query($dbconnect, "INSERT INTO `cart`(bookId, userId, author, title, price, quantity) 
+        VALUES('$bookId', '$user_id', '$author', '$book_title', '$book_price', '$book_quantity')") ;
 
+        if($select_cart){
+        echo "<script> alert('product already added to cart!') </script>";
+          header("Location: cart-page.php");
+       }else{
+        die(mysqli_error($dbconnect));
+      } 
+    };
+      unset($_POST['add_to_cart']);
+      ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -23,7 +45,6 @@ of usage -->
                 <table>
                     <caption><h2>Shop Books</h2></caption>
                     <?php 
-                        include 'db-connect.php'; // Get db instance
                         $books = array(); // Array  to hold all books read from db
                         $books = mysqli_query($dbconnect, "SELECT * FROM `books`"); // Query to db for getting all books
                         $books_arr = mysqli_fetch_all($books, MYSQLI_ASSOC); // Convert all read bbooks into assocc array
@@ -41,14 +62,17 @@ of usage -->
                                  <!-- Display the book details -->
                                 <td>
                                     <div class="books">
-                                    <form method="post" action="" >
+                                    <form method="post" action="shopBooks-page.php" >
                                     <?php echo '<img src="data:img/jpg;charset=utf8;base64, '. base64_encode($book['image']) .'" width="280px" height="330px" />'?>
+                                        <input class="desc" hidden name="bookId" value="<?php echo $book['bookId'] ?>">
                                         <p class="desc"><b><?php echo $book['author']; ?></b></p>
+                                        <input class="desc" hidden name="author" value="<?php echo $book['author'] ?>">
                                         <p class="desc"><b><?php echo $book['title'];?></b></p>
+                                        <input class="desc" hidden name="title" value="<?php echo $book['title'] ?>">
                                         <p class="desc">R<?php echo $book['price']; ?></p>
+                                        <input class="desc" hidden name="price" value="<?php echo $book['price'] ?>">
                                         <input type="number" min="1" max="1" name="quantity" value="1" style="text-align: center;">
-                                        <button class="add_button"><a href="cart-page.php?itemId='<?php echo $book['bookId'];?>'" 
-                                        class="text-light" style="text-decoration:none;">Add to cart</a>
+                                        <button class="add_button" name="add_to_cart" value="add_to_cart" type="submit">Add to cart
                                         </button>
                                     </form>
                                     </div>

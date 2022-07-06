@@ -8,6 +8,10 @@ References
 CodeXWorld. 7 December 2021.[Online]. Store and Retrieve Image from MySQL Database using PHP. 
 Available on: https://www.codexworld.com/store-retrieve-image-from-database-mysql-php/ . Accessed: 13 June 2022
 -->
+<?php
+include 'db-connect.php';
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -29,7 +33,7 @@ Available on: https://www.codexworld.com/store-retrieve-image-from-database-mysq
     <div class="container-fluid pb-3">
     <div class="d-grid gap-3" style="grid-template-rows: 1fr 2fr; height:400px">  
       <div class="bg-light border rounded-3">
-          <!-- 
+    <!-- 
     ---------------------------------------------------------------------------------------------------
       READ, VERIFY AND DELETE USERS 
     ---------------------------------------------------------------------------------------------------
@@ -50,7 +54,6 @@ Available on: https://www.codexworld.com/store-retrieve-image-from-database-mysq
   <tbody>
     <?php 
     //  FETCHING USER DETAILS FROM DATABASE
-        include 'db-connect.php';
          $select_users = mysqli_query($dbconnect, "SELECT * FROM `user`");
          while($fetch_users = mysqli_fetch_assoc($select_users)){
         ?>
@@ -72,6 +75,38 @@ Available on: https://www.codexworld.com/store-retrieve-image-from-database-mysq
   </tbody>
 </table>
       </div>
+
+       <!-- 
+  --------------------------------------------------------------------------------------------------- 
+      ORDERS
+  --------------------------------------------------------------------------------------------------- 
+--> 
+<div class="bg-light border rounded-3">
+          <h3 style="font-weight: bold; text-align: center; padding: 10px 0px 0px;"> Orders</h3> 
+          <br>
+    <?php 
+    //  FETCHING ORDERS FROM DATABASE
+         $select_books = mysqli_query($dbconnect, "SELECT * FROM `cart`");
+         $userId = $_SESSION['userId'];
+         while($fetch_order = mysqli_fetch_assoc($select_books)){
+        ?>
+        Order ID: <?php echo $fetch_order['cartId']; ?><br>
+        User ID: <?php echo $userId ?> <br>
+        Book Details: <br> ------------- <br> <?php echo 'Author: '. $fetch_order['author'] .' <br> '. 'Title: '.$fetch_order['title'] .'<br> '. 'Price: R'.$fetch_order['price'] .'<br> '.'Quantity: '. $fetch_order['quantity']; ?> <br>
+        <br>
+       Dispatch:  <button class="btn-button"><a href="approveBook.php?approveBookId='<?php echo $fetch_order['cartId']; ?>'" class="text-light" style="text-decoration:none;">Fulfill</a></button>
+       <br><br>
+       Delivery details: <br>------------- <br>
+      <?php $select_delivery = mysqli_query($dbconnect, "SELECT * FROM `delivery_details`");
+         while($fetch_order = mysqli_fetch_assoc($select_delivery)){
+        echo 'Street: '.$fetch_order['address1'] . $fetch_order['address2'] .'<br> '. 'Suburb: '. $fetch_order['suburb'] .'<br> '.'City: '. $fetch_order['city']
+       .' <br> '. 'Province: '. $fetch_order['province'] .'<br> '. 'Postal code: '.$fetch_order['postal_code'] .'<br><br>';
+     }; 
+     ?>
+     <?php }; ?>
+</table>
+      </div>
+
   <!-- 
     ---------------------------------------------------------------------------------------------------
       MESSAGES FROM STUDENT USERS 
@@ -94,7 +129,6 @@ Available on: https://www.codexworld.com/store-retrieve-image-from-database-mysq
   <tbody>
     <?php 
     //  FETCHING MESSAGES FROM DATABASE
-        include 'db-connect.php';
          $select_message = mysqli_query($dbconnect, "SELECT * FROM `contact`");
          while($fetch_users = mysqli_fetch_assoc($select_message)){
         ?>
@@ -136,7 +170,6 @@ Available on: https://www.codexworld.com/store-retrieve-image-from-database-mysq
   <tbody>
     <?php 
     //  FETCHING books FROM DATABASE
-        include 'db-connect.php';
          $select_books = mysqli_query($dbconnect, "SELECT * FROM `sell`");
          while($fetch_users = mysqli_fetch_assoc($select_books)){
         ?>
@@ -235,7 +268,6 @@ Available on: https://www.codexworld.com/store-retrieve-image-from-database-mysq
   <h4 style="font-weight: bold; padding:0px 15px;">Added books</h4>
   <br>
     <?php 
-        include 'db-connect.php';
          $select_users = mysqli_query($dbconnect, "SELECT * FROM `books`");
         
          while($fetch_users = mysqli_fetch_assoc($select_users)){

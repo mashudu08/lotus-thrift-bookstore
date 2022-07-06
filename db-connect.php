@@ -17,8 +17,4 @@ if($dbconnect === false){
 else{
     echo " Connection successful";
 }
-
-// mysqli_close($dbconnect);
-// $dbconnect = false;
-
 ?>

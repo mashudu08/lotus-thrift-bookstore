@@ -126,7 +126,7 @@ a{
     border: #1B263B;
     border-radius: 30px;
     width: 120px;
-    height: 30px;
+    height: 32px;
 }
 
 .btn-button:hover
@@ -237,4 +237,48 @@ a{
      padding: 10px 10px;
      margin-top: 50px;
  }
+
+ /*Cart Button*/
+ .btn-cartbutton
+ {
+    width: 150px;
+    height: 35px;
+    border: 1px solid #ccc;
+    cursor: pointer;
+    margin-top: 10px;
+    color: #ffffff;
+    background-color: #1B263B;
+    border-radius: 30px;
+    font-size: 15px;
+ }
+
+.btn-cartbutton:hover
+{
+    transform: scale(1.0.1);
+    background-color: #0877AA;
+}
+
+.btn-shopping
+{
+    color: #1B263B;
+    border: 1px solid #1B263B;
+    padding: 5px 15px;
+    border-radius: 25px; 
+    background-color:#fff; 
+    align-items: center;
+    font-size: 13px;
+}
+.btn-shopping:hover
+{
+    transform: scale(1.0.1);
+    color: #fff;
+    background-color: #1B263B;
+    
+}
+.btn-shopping a:hover
+{
+    color: #fff;
+    background-color: #1B263B;
+    
+}
 

@@ -12,7 +12,7 @@ Accessed: 25 May 2022
   <?php
     include "db-connect.php";
     session_start();
-
+    
         // Storing image in database is from(CodeXWorld. 2021)
         if(isset($_POST['sell-request']))
         {
@@ -25,9 +25,6 @@ Accessed: 25 May 2022
             $description = mysqli_real_escape_string($dbconnect,$_POST['description']);
             $imgContent = addslashes(file_get_contents($tmp_name));
             $username = $_SESSION['username'];
-
-            // $sql = "INSERT INTO `sell`(author, title, price, image, description, username) 
-            //         VALUES('$author','$title', '$price', '$imgContent', '$description', '$username')";
 
             $sell_request = mysqli_query($dbconnect, "INSERT INTO `sell`(author, title, price, image, description, username) 
             VALUES('$author','$title', '$price', '$imgContent', '$description', '$username')"); 
@@ -42,9 +39,7 @@ Accessed: 25 May 2022
                 echo "Failed to upload book!";
             }
         }
-
          unset($_POST['sell-request']);           
-  
     ?>
 <html lang="en">
 <head>
@@ -60,7 +55,6 @@ Accessed: 25 May 2022
 <body>
 
 <?php include 'header.php'; ?>
-
      <!-- contact form styling using Bootstrap -->
     <h2 style="text-align:center;" class="header-title">Upload book</h2>
     <p style="text-align:center;">Upload books you want to sell</p><br>

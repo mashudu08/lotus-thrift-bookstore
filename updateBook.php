@@ -18,7 +18,6 @@ session_start();
         $title =$row['title'];
         $price = $row['price'];
         $imgContent = base64_encode($row['image']);
-        // $imgContent ='<img src="data:img/jpg;charset=utf8;base64,'.base64_encode($row['image']).'" width="100px" height="150px"/>';
         $description = $row['description']; 
         // Storing image in from database (CodeXWorld. 2021)
                 if(isset($_POST['submit'])){
@@ -45,7 +44,6 @@ session_start();
         }
              unset($_POST['add-book']);
           ?> 
-
 <!DOCTYPE html>
 <html lang="en">
 <head>

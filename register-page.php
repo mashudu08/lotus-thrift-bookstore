@@ -52,7 +52,6 @@ GeeksforGeeks. 31 July 2021. [Online]. How to encrypt and decrypt passwords usin
       $sql = "INSERT INTO `user` ( name, stNumber, username, password)
               VALUES ('$name', '$stNum', '$username', '$hash_password')";
       
-  
         //executing the query
         $dbResult = @mysqli_query($dbconnect, $sql);
         // echo $dbResult;
@@ -64,8 +63,6 @@ GeeksforGeeks. 31 July 2021. [Online]. How to encrypt and decrypt passwords usin
           $_SESSION['msg_type'] = "success";
           header('location:login-page.php');
         }
-
-  
         //closing the connection
         mysqli_close($dbconnect);
         $dbconnect = FALSE;
@@ -73,8 +70,7 @@ GeeksforGeeks. 31 July 2021. [Online]. How to encrypt and decrypt passwords usin
       unset($_POST["Register"]);  
     }
     ?>
-
-    <style><?php include "css/registerStyles.css";?></style>
+  <style><?php include "css/registerStyles.css";?></style>
     <h1 class="login-title">Registration Form</h1>
     <div class="formMain">
       <form class="form" action="register-page.php" method="POST">
@@ -90,6 +86,5 @@ GeeksforGeeks. 31 July 2021. [Online]. How to encrypt and decrypt passwords usin
           <p class="link">Already have registered?  <a href="login-page.php" style="color: #fff;"> Login here</a></p>
       </form>
     </div>
-    
 </body>
 </html>

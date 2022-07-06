@@ -2,37 +2,11 @@
      ST10118368 Ledwaba David
 The code is my own work unless stated otherwise as a comment at the point 
 of usage -->
-<?php
-      include 'db-connect.php';  //db connection 
-      session_start();
-      $user_id = $_SESSION['userId'];
-      $book_id=$_GET['itemId'];
-      $result= mysqli_query($dbconnect, "SELECT * FROM `books` WHERE bookId=$book_id");
-      $row = mysqli_fetch_assoc($result);
-      $author = $row['author'];
-      $title =$row['title'];
-      $price = $row['price'];
-      $imgContent ='<img src="data:img/jpg;charset=utf8;base64,'.base64_encode($row['image']).'" width="100px" height="150px"/>';
-
-      if(isset($_POST['add_to_cart'])){
-        $book_title = mysqli_real_escape_string($dbconnect, $_POST['title']);
-        $book_price =  mysqli_real_escape_string($dbconnect, $_POST['price']);
-        $book_image = $imgContent;
-        $book_quantity =  mysqli_real_escape_string($dbconnect,$_POST['quantity']);
-    
-
-        // mysqli_query($dbconnect, "INSERT INTO `cart`(bookId, userId, title, price, image, quantity) VALUES('$book_id', '$user_id', '$book_title', '$book_price', '$book_image', '$book_quantity')") ;
-
-        $select_cart =  mysqli_query($dbconnect, "SELECT * FROM `cart` WHERE title = '$book_title' AND userId = '$user_id'") or die('query failed');
-
-        if(mysqli_num_rows($select_cart) > 0){
-          $message[] = 'product already added to cart!';
-       }else{
-          mysqli_query($dbconnect, "INSERT INTO `cart`(bookId, userId, title, price, image, quantity) VALUES('$book_id', '$user_id', '$book_title', '$book_price', '$book_image', '$book_quantity')") or die('query failed');
-          $message[] = 'product added to cart!';
-      }
-      };
-      ?>
+<?php 
+include 'db-connect.php';
+session_start();
+$user_id =$_SESSION['userId'];
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -49,16 +23,15 @@ of usage -->
 </head>
 <body>
     <?php include 'header.php'; ?>
-    <style><?php include "css/cartStyles.css";?></style>
-    
+  
     <h2 style="text-align:center;">Your Cart</h2>
     <div class="container">
         <br><br>
       <table class="table">
   <thead>
     <tr>
-      <!-- <th scope="col">Author</th> -->
-      <th scope="col">Image</th>
+       <th scope="col">Item #</th>
+      <th scope="col">Author</th>
       <th scope="col">Title</th>
       <th scope="col">Price</th>
       <th scope="col">Quantity</th>
@@ -68,7 +41,6 @@ of usage -->
     </tr>
   </thead>
   <tbody>
-
   <?php
     $total = 0;
     $cart = mysqli_query($dbconnect, "SELECT * FROM `cart` WHERE userId = '$user_id'");
@@ -76,27 +48,38 @@ of usage -->
   if(mysqli_num_rows($cart) > 0){
     while($fetch_cart = mysqli_fetch_assoc($cart)){
     ?>
-        <tr>
-         <td><?php echo '<img src="data:img/jpg;charset=utf8;base64, '. base64_encode($fetch_cart['image']) .'" width="100px" height="150px" />'?>
-        </td>
+    <tr>
+    <td><?php echo $fetch_cart['cartId'];?></td>
+        <td><?php echo $fetch_cart['author'];?></td>
          <td><?php echo $fetch_cart['title'];?></td>
-         <td><?php echo $fetch_cart['price'];?></td>
+         <td>R<?php echo $fetch_cart['price'];?></td>
          <td><?php echo $fetch_cart['quantity']; ?></td>
-         <td>R <?php echo $sub_total = ($fetch_cart['price'] * $fetch_cart['quantity']); ?></td>
+         <td>R <?php echo number_format($fetch_cart['price'] * $fetch_cart['quantity'],2); ?></td>
          <td> 
-         <button class="btn-button"><a href="removeCart.php?removeItemId='<?php echo $fetch_users['cartId'];?>'" class="text-light" style="text-decoration:none;">Remove</a></button>
+         <button class="btn-button"><a href="editCart.php?deleteCartId='<?php echo $fetch_cart['cartId']; ?>'" 
+         class="text-light" style="text-decoration:none;">Remove</a></button>
         </td>
-         </tr>
+    </tr>
+        <?php
+        $total = $total + $fetch_cart['quantity'] * $fetch_cart['price'];
+      ?>   
    <?php 
-   $grand_total += $sub_total;
     }
     }
     else{
       echo '<tr><td style="padding:20px; text-transform:capitalize;" colspan="6">no item added</td></tr>';
     }
-    ?>
+  ?>  
   </tbody>
 </table>
+  <?php echo 'Grand Total:  R'. $total?>
+ <br>
+ <button class="btn-cartbutton" style="margin: 50px 5px;" ><a href="checkout-page.php" 
+ style="text-decoration:none; color: #fff; ">Checkout</a></button>&NonBreakingSpace;
+
+ <button  class="btn-shopping">
+            <a href="shopBooks-page.php" style="text-decoration:none;">Continue Shopping</a></button>
  </div>
+ <?php include 'footer.php'; ?>
 </body>
 </html>
