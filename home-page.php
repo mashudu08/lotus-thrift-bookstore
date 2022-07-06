@@ -8,6 +8,7 @@ References
 TextbookTrader. 2022. [Online]. Available on: https://textbooktrader.co.za/
 -->
 <?php 
+ include 'db-connect.php';
 session_start(); 
     $username = $_SESSION['username'];
     $refreshed = $_SESSION['isRefreshed'];
@@ -61,53 +62,42 @@ include 'header.php';
                 <br>
             </div>
             
-            <center>
-                <table>
-                    <caption><h1>Latest Arrival</h1></caption>
+    <center>
+            <table>
+                <caption><h1>Latest Arrival</h1></caption>
+                <?php  
+                    $books = array(); // Array  to hold all books read from db
+                    $books = mysqli_query($dbconnect, "SELECT * FROM `books` LIMIT 6");
+                    $books_arr = mysqli_fetch_all($books, MYSQLI_ASSOC); // Convert all read bbooks into assocc array
+                    ?>
                     <?php 
-                        include 'db-connect.php'; // Get db instance
-                        $books = array(); // Array  to hold all books read from db
-
-                        $books = mysqli_query($dbconnect, "SELECT * FROM `books` LIMIT 6"); // Query to db for getting all books
-
-                        $books_arr = mysqli_fetch_all($books, MYSQLI_ASSOC); // Convert all read bbooks into assocc array
-
-                        ?>
-
-                        <?php 
-                        $index = 0; // Flag used to create table rows
-                        foreach ($books_arr as $book) : // Foreach used to cycle through array
-                            // This if statement creates the initial table row
-                                if ($index == 0) { 
-                                    ?> 
-                                    <tr>
-                                    <?php    
-                                }
-                                ?>
-                                
-                                 <!-- Display the book details -->
-                                <td>
-                                    <div class="books">
-                                    <?php echo '<img src="data:img/jpg;charset=utf8;base64, '. base64_encode($book['image']) .'" width="280px" height="330px" />'?>
-                                        <p class="desc"><b><?php echo $book['author']; ?></b></p>
-                                        <p class="desc"><b><?php echo $book['title'];?></b></p>
-                                        <p class="desc">R<?php echo $book['price']; ?></p>
-                                        <button class="add_button" name="addToCart"><a href="manageCart.php?cartItemId='<?php echo $book['bookId']; ?>'">Add to cart</a></button>
+                    $index = 0; // Flag used to create table rows
+                    foreach ($books_arr as $book) : // Foreach used to cycle through array
+                    // This if statement creates the initial table row
+                        if ($index == 0) { 
+                            ?> 
+                             <tr>
+                             <?php    
+                            }
+                             ?>
+                     <!-- Display the book details -->
+                        <td>
+                           <div class="books">
+                                <?php echo '<img src="data:img/jpg;charset=utf8;base64, '. base64_encode($book['image']) .'" width="280px" height="330px" />'?>
+                                    <p class="desc"><b><?php echo $book['author']; ?></b></p>
+                                    <p class="desc"><b><?php echo $book['title'];?></b></p>
+                                    <p class="desc">R<?php echo $book['price']; ?></p>
+                                    <button class="add_button" name="addToCart"><a href="manageCart.php?cartItemId='<?php echo $book['bookId']; ?>'">Add to cart</a></button>
                                     </div>
                                 </td>
-
                                 <!-- This condition  create the closing table row if three books have already been displayed -->
                                 <?php if ($index == 2) {
                                     ?> 
-                                    </tr>
-                                     <?php   
-                                }
-                                ?>
-
+                                </tr>
+                                <?php } ?>
                                 <?php if ($index == 2) {
                                     $index = 0; // Set the flag back to initial state   
                                 } 
-                                
                                 else {
                                     $index++; // Increment flag
                                 }

@@ -19,15 +19,21 @@ if(isset($_POST['submit'])){
     VALUES('$user_id', '$address1', '$address2', '$suburb', '$city', '$province', '$postal_code')") ;
 
     if($delivery_details){
-    echo "<script>
-      alert('Order place successfully!');
+    echo 
+    "<script>
+      alert(
+      ". $select_delivery = mysqli_query($dbconnect, "SELECT * FROM `delivery_details`");
+      while($fetch_order = mysqli_fetch_assoc($select_delivery)){
+        echo $fetch_order['address1'] .' <br> '. $fetch_order['address2'] .'<br> '. $fetch_order['suburb'] .'<br> '. $fetch_order['city']
+        .' <br> '. $fetch_order['province'] .'<br> '. $fetch_order['postal_code'];
+      }");
      </script>";
+     header('location:login-page.php');
     }
     else{
       die(mysqli_error($dbconnect));
     } 
 };
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -50,37 +56,27 @@ if(isset($_POST['submit'])){
 <div class="checkout">
         <form class="align-items-center mt-5" method="post">
   <div class="form-row" >
-  </div>
-  <div class="form-group mb-3 w-5">
     <label for="address1">Address</label>
-    <input type="text" class="form-control" id="address1" placeholder="1234 Main St">
-  </div>
-  <div class="form-group mb-3 w-5">
+    <input type="text" class="form-control" name="address1" placeholder="1234 Main St"><br>
+
     <label for="address2">Address 2</label>
-    <input type="text" class="form-control" id="address2" placeholder="Apartment, studio, or floor">
-  </div>
-  <div class="form-row mb-3 w-5">
-    <div class="form-group col-md-6  mb-3 w-5">
+    <input type="text" class="form-control" name="address2" placeholder="Apartment, studio, or floor"><br>
+
       <label for="suburb">Suburb</label>
-      <input type="text" class="form-control" id="suburb">
-    </div>
-  <div class="form-row mb-3 w-5">
-    <div class="form-group col-md-6  mb-3 w-5">
+      <input type="text" class="form-control" name="suburb"><br>
+  
       <label for="city">City</label>
-      <input type="text" class="form-control" id="city">
-    </div>
-    <div class="form-group col-md-4  mb-3 w-5">
+      <input type="text" class="form-control" name="city"><br>
+
       <label for="province">Province</label>
-      <select id="province" class="form-control">
+      <select name="province" class="form-control">
         <option selected>Gauteng</option>
       </select>
-    </div>
-    <div class="form-group col-md-2">
+    <br>
       <label for="postal_code">Postal Code</label>
-      <input type="text" class="form-control" id="postal_code">
-    </div>
-  </div>
-  <button type="submit" class="btn-button mb-5 w-5">Place Order</button>
+      <input type="text" class="form-control" name="postal_code">
+</div><br>
+  <button type="submit" name="submit" class="btn-button mb-5 w-5">Place Order</button>
 </form>
 </div>        
 <?php include 'footer.php'; ?>

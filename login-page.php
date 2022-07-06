@@ -6,15 +6,12 @@ of usage -->
     include 'db-connect.php';
     session_start();
     if(isset($_POST['Login'])){
-
         $username = mysqli_real_escape_string($dbconnect, $_POST['username']);
         $pass = mysqli_real_escape_string($dbconnect, $_POST['password']);
-         
         $select_user = mysqli_query($dbconnect, "SELECT * FROM `user` WHERE username = '$username' ");
-        
             if(mysqli_num_rows($select_user) > 0){
                 $row = mysqli_fetch_assoc($select_user);
-           
+        
                     $_SESSION['username'] = $row['username'];
                     $_SESSION['userId'] = $row['userId'];
                     $_SESSION['isRefreshed'] = false;
@@ -25,17 +22,15 @@ of usage -->
                         if ($isVerified == 1) {
                             header('location:home-page.php');
                         } else {
-                            echo "Waiting to be verified";
+                            echo 
+                            "<script> alert('Waiting to be verified')</script>";
                         }
                     }                        
                   }else{
-                    echo "Waiting to be verified";
-                  }       
-                
-        }
-    
+                    echo  "<script> alert('Waiting to be verified')</script>";
+                  }                       
+        }    
     ?>
-
 <html lang="en">
 <head>
     <meta charset="UTF-8">

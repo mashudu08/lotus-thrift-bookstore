@@ -8,10 +8,8 @@ References
 Bootstrap. 2022. Forms. [online]. Available on: https://getbootstrap.com/docs/5.2/forms/overview/ .
 Accessed: 25 May 2022
 -->
-
 <?php
      include 'db-connect.php';
-
      session_start();
 
     if(isset($_POST['send'])){
@@ -21,13 +19,11 @@ Accessed: 25 May 2022
         $user_id = $_SESSION['userId'];
 
      $message = mysqli_query($dbconnect, "INSERT INTO `contact`(userId, name, email, message) VALUES( '$user_id','$name', '$email', '$msg')");
-
      if($message){
         echo "<script>
           alert('Message sent successfully');
-     </script>" ;
-     }
-     else{
+      </script>" ;
+     }else{
         die(mysqli_error($dbconnect));
      } 
 }
@@ -45,7 +41,6 @@ Accessed: 25 May 2022
 </head>
 <body>
     <?php include 'header.php'; ?>
-
      <!-- contact form styling using Bootstrap (Bootstrap. 2022) -->
      <h2 style="text-align:center;" class="header-title" >Contact</h2>
      <p style="text-align:center;  margin-bottom: 20px;" >Send us a message about book enquiries</p>
